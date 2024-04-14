@@ -34,4 +34,4 @@ skeleton = NodePath("../..")
 material/0 = SubResource( 4 )
 
 [node name="Gem" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.72036, 0, -3.84157 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -3 )

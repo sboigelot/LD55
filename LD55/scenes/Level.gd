@@ -28,6 +28,24 @@ export(NodePath) var np_buy_back_carrier_life_upgrade_button
 export(NodePath) var np_buy_back_carrier_speed_upgrade_cost_label
 export(NodePath) var np_buy_back_carrier_speed_upgrade_button
 
+export(NodePath) var np_buy_left_miner_cost_label
+export(NodePath) var np_buy_left_miner_button
+
+export(NodePath) var np_buy_left_miner_life_upgrade_cost_label
+export(NodePath) var np_buy_left_miner_life_upgrade_button
+
+export(NodePath) var np_buy_left_miner_mining_upgrade_cost_label
+export(NodePath) var np_buy_left_miner_mining_upgrade_button
+
+export(NodePath) var np_buy_right_miner_cost_label
+export(NodePath) var np_buy_right_miner_button
+
+export(NodePath) var np_buy_right_miner_life_upgrade_cost_label
+export(NodePath) var np_buy_right_miner_life_upgrade_button
+
+export(NodePath) var np_buy_right_miner_mining_upgrade_cost_label
+export(NodePath) var np_buy_right_miner_mining_upgrade_button
+
 onready var ui_buy_front_carrier_cost_label = get_node(np_buy_front_carrier_cost_label) as Label
 onready var ui_buy_front_carrier_button = get_node(np_buy_front_carrier_button) as Button
 
@@ -46,12 +64,32 @@ onready var ui_buy_back_carrier_life_upgrade_button = get_node(np_buy_back_carri
 onready var ui_buy_back_carrier_speed_upgrade_cost_label= get_node(np_buy_back_carrier_speed_upgrade_cost_label) as Label
 onready var ui_buy_back_carrier_speed_upgrade_button = get_node(np_buy_back_carrier_speed_upgrade_button) as Button
 
+onready var ui_buy_left_miner_cost_label = get_node(np_buy_left_miner_cost_label) as Label
+onready var ui_buy_left_miner_button = get_node(np_buy_left_miner_button) as Button
+
+onready var ui_buy_left_miner_life_upgrade_cost_label = get_node(np_buy_left_miner_life_upgrade_cost_label) as Label
+onready var ui_buy_left_miner_life_upgrade_button = get_node(np_buy_left_miner_life_upgrade_button) as Button
+
+onready var ui_buy_left_miner_mining_upgrade_cost_label = get_node(np_buy_left_miner_mining_upgrade_cost_label) as Label
+onready var ui_buy_left_miner_mining_upgrade_button = get_node(np_buy_left_miner_mining_upgrade_button) as Button
+
+onready var ui_buy_right_miner_cost_label = get_node(np_buy_right_miner_cost_label) as Label
+onready var ui_buy_right_miner_button = get_node(np_buy_right_miner_button) as Button
+
+onready var ui_buy_right_miner_life_upgrade_cost_label = get_node(np_buy_right_miner_life_upgrade_cost_label) as Label
+onready var ui_buy_right_miner_life_upgrade_button = get_node(np_buy_right_miner_life_upgrade_button) as Button
+
+onready var ui_buy_right_miner_mining_upgrade_cost_label = get_node(np_buy_right_miner_mining_upgrade_cost_label) as Label
+onready var ui_buy_right_miner_mining_upgrade_button = get_node(np_buy_right_miner_mining_upgrade_button) as Button
+
+
 const road_lenght:float = 30.0
 export(Array, String) var road_layout = [
+	"Gem1",
 	"Base",
 	"Gem1", 
+	"Base",
 	"Gem1",
-	"Base"
 ]
 
 var game_speed: float =  1.0
@@ -120,25 +158,112 @@ func update_ui():
 		
 	update_shop_ui()
 
-func update_shop_ui():
-	ui_buy_front_carrier_cost_label.text = "%d mana" % carriage.get_new_front_carrier_cost()
-	ui_buy_front_carrier_button.disabled = carriage.mana < carriage.get_new_front_carrier_cost()
-	
-	ui_buy_front_carrier_life_upgrade_cost_label.text = "%d mana" % carriage.get_front_carrier_life_upgrade_cost()
-	ui_buy_front_carrier_life_upgrade_button.disabled = carriage.mana < carriage.get_front_carrier_life_upgrade_cost()
-	
-	ui_buy_front_carrier_speed_upgrade_cost_label.text = "%d mana" % carriage.get_front_carrier_speed_upgrade_cost()
-	ui_buy_front_carrier_speed_upgrade_button.disabled = carriage.mana < carriage.get_front_carrier_speed_upgrade_cost()
-	
-	ui_buy_back_carrier_cost_label.text = "%d mana" % carriage.get_new_back_carrier_cost()
-	ui_buy_back_carrier_button.disabled = carriage.mana < carriage.get_new_back_carrier_cost()
-	
-	ui_buy_back_carrier_life_upgrade_cost_label.text = "%d mana" % carriage.get_back_carrier_life_upgrade_cost()
-	ui_buy_back_carrier_life_upgrade_button.disabled = carriage.mana < carriage.get_back_carrier_life_upgrade_cost()
-	
-	ui_buy_back_carrier_speed_upgrade_cost_label.text = "%d mana" % carriage.get_back_carrier_speed_upgrade_cost()
-	ui_buy_back_carrier_speed_upgrade_button.disabled = carriage.mana < carriage.get_back_carrier_speed_upgrade_cost()
+func update_shop_item(cost_label, button, header, cost, can_add):
+	if can_add:
+		cost_label.text = "%s%s%d mana" % [header, "" if header == "" else "\n", cost]
+		button.disabled = carriage.mana < cost
+	else:
+		cost_label.text = "%s%sMAX" % [header, "" if header == "" else "\n"]
+		button.disabled = true
 
+
+func update_shop_ui():
+	
+	update_shop_item(
+		ui_buy_front_carrier_cost_label,
+		ui_buy_front_carrier_button,
+		"%d" % [carriage.front_carrier_lifes.size()],
+		carriage.get_new_front_carrier_cost(),
+		carriage.can_add_front_carrier()
+	)
+	
+	update_shop_item(
+		ui_buy_front_carrier_life_upgrade_cost_label,
+		ui_buy_front_carrier_life_upgrade_button,
+		"%.2f sec" % [carriage.get_front_carrier_lifespan()],
+		carriage.get_front_carrier_life_upgrade_cost(),
+		true
+	)
+	
+	update_shop_item(
+		ui_buy_front_carrier_speed_upgrade_cost_label,
+		ui_buy_front_carrier_speed_upgrade_button,
+		"%.2f m/sec" % [carriage.get_front_carrier_speed()],
+		carriage.get_front_carrier_speed_upgrade_cost(),
+		true
+	)
+	
+	update_shop_item(
+		ui_buy_back_carrier_cost_label,
+		ui_buy_back_carrier_button,
+		"%d" % [carriage.back_carrier_lifes.size()],
+		carriage.get_new_back_carrier_cost(),
+		carriage.can_add_back_carrier()
+	)
+	
+	update_shop_item(
+		ui_buy_back_carrier_life_upgrade_cost_label,
+		ui_buy_back_carrier_life_upgrade_button,
+		"%.2f sec" % [carriage.get_back_carrier_lifespan()],
+		carriage.get_back_carrier_life_upgrade_cost(),
+		true
+	)
+	
+	update_shop_item(
+		ui_buy_back_carrier_speed_upgrade_cost_label,
+		ui_buy_back_carrier_speed_upgrade_button,
+		"%.2f m/sec" % [carriage.get_back_carrier_speed()],
+		carriage.get_back_carrier_speed_upgrade_cost(),
+		true
+	)
+	
+	update_shop_item(
+		ui_buy_left_miner_cost_label,
+		ui_buy_left_miner_button,
+		"%d" % [carriage.left_miner_lifes.size()],
+		carriage.get_new_left_miner_cost(),
+		carriage.can_add_left_miner()
+	)
+	
+	update_shop_item(
+		ui_buy_left_miner_life_upgrade_cost_label,
+		ui_buy_left_miner_life_upgrade_button,
+		"%.2f sec" % [carriage.get_left_miner_lifespan()],
+		carriage.get_left_miner_life_upgrade_cost(),
+		true
+	)
+	
+#	update_shop_item(
+#		ui_buy_left_miner_mining_upgrade_cost_label,
+#		ui_buy_left_miner_mining_upgrade_button,
+#		"",
+#		2,
+#		false
+#	)
+
+	update_shop_item(
+		ui_buy_right_miner_cost_label,
+		ui_buy_right_miner_button,
+		"%d" % [carriage.right_miner_lifes.size()],
+		carriage.get_new_right_miner_cost(),
+		carriage.can_add_right_miner()
+	)
+		
+	update_shop_item(
+		ui_buy_right_miner_life_upgrade_cost_label,
+		ui_buy_right_miner_life_upgrade_button,
+		"%.2f sec" % [carriage.get_right_miner_lifespan()],
+		carriage.get_right_miner_life_upgrade_cost(),
+		true
+	)
+	
+#	update_shop_item(
+#		ui_buy_right_miner_mining_upgrade_cost_label,
+#		ui_buy_right_miner_mining_upgrade_button,
+#		"",
+#		4,
+#		false
+#	)
 
 func postion3d_to_screen(position3d:Vector3, offset:Vector2 = Vector2.ZERO) -> Vector2:
 	var current_camera = $Camera
@@ -168,22 +293,57 @@ func _on_BuyFCButton_pressed():
 
 
 func _on_BuyFCLUButton_pressed():
-	pass # Replace with function body.
-
-
+	var cost = carriage.get_front_carrier_life_upgrade_cost()
+	carriage.upgrade_front_carrier_life()
+	carriage.mana -= cost
+	
 func _on_BuyFCSUButton_pressed():
-	pass # Replace with function body.
-
+	var cost = carriage.get_front_carrier_speed_upgrade_cost()
+	carriage.upgrade_front_carrier_speed()
+	carriage.mana -= cost
 
 func _on_BuyBCButton_pressed():
 	var cost = carriage.get_new_back_carrier_cost()
 	if carriage.add_back_carrier():
 		carriage.mana -= cost
 
-
 func _on_BuyBCLUButton_pressed():
+	var cost = carriage.get_back_carrier_life_upgrade_cost()
+	carriage.upgrade_back_carrier_life()
+	carriage.mana -= cost
+
+func _on_BuyBCSUButton_pressed():
+	var cost = carriage.get_back_carrier_speed_upgrade_cost()
+	carriage.upgrade_back_carrier_speed()
+	carriage.mana -= cost
+
+func _on_BuyLMButton_pressed():
+	var cost = carriage.get_new_left_miner_cost()
+	if carriage.add_left_miner():
+		carriage.mana -= cost
+
+
+func _on_BuyLMLUButton_pressed():
+	var cost = carriage.get_left_miner_life_upgrade_cost()
+	carriage.upgrade_left_miner_life()
+	carriage.mana -= cost
+
+
+func _on_BuyLMMUButton_pressed():
 	pass # Replace with function body.
 
 
-func _on_BuyBCSUButton_pressed():
+func _on_BuyRMButton_pressed():
+	var cost = carriage.get_new_right_miner_cost()
+	if carriage.add_right_miner():
+		carriage.mana -= cost
+
+
+func _on_BuyRMLUButton_pressed():
+	var cost = carriage.get_right_miner_life_upgrade_cost()
+	carriage.upgrade_right_miner_life()
+	carriage.mana -= cost
+
+
+func _on_BuyRMMUButton_pressed():
 	pass # Replace with function body.

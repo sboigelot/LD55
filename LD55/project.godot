@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "Spatial",
 "class": "Carriage",
 "language": "GDScript",
-"path": "res://scenes/Carriage.gd"
+"path": "res://scenes/Carriage/Carriage.gd"
 }, {
 "base": "Spatial",
 "class": "ClickableSpatial",
@@ -48,6 +48,11 @@ _global_script_classes=[ {
 "class": "FloatingLabel3D",
 "language": "GDScript",
 "path": "res://Utilities/3D/FloatingLabel3D.gd"
+}, {
+"base": "Area",
+"class": "Gem",
+"language": "GDScript",
+"path": "res://scenes/Roads/Gem.gd"
 }, {
 "base": "Spatial",
 "class": "HoverLabel3D",
@@ -93,6 +98,7 @@ _global_script_class_icons={
 "FloatingIcon3D": "",
 "FloatingLabel": "",
 "FloatingLabel3D": "",
+"Gem": "",
 "HoverLabel3D": "",
 "Level": "",
 "Line3D": "",

@@ -1,5 +1,7 @@
 extends Area
 
+class_name Gem
+
 signal pressed
 signal mana_generated(amount)
 
@@ -11,9 +13,18 @@ onready var mesh_instance:MeshInstance = $MeshInstance
 onready var outline_mesh_instance:MeshInstance = $MeshInstance/MeshInstance
 onready var tutorial_hover_label_3d:HoverLabel3D = $HoverLabel3D
 
+signal carriage_reached
+
+var passed_carriage: bool = false
+
 func _ready():
 	outline_mesh_instance.visible = false
 	Game.level.connect("tutorial_step_changed", self, "on_tutorial_step_changed")
+
+func _process(delta):
+	if not passed_carriage and global_translation.x <= 1.0:
+		passed_carriage = true
+		Game.level.carriage.on_gem_reach_carriage(self)
 
 func on_tutorial_step_changed():
 	update_tutorial()
@@ -51,7 +62,10 @@ func _on_Gem_input_event(camera, event, position, normal, shape_idx):
 			emit_signal("pressed")
 		
 func _on_Gem_pressed():
-	move_to_tuto_step(1)
+	if Game.level.tutorial_step_gem_click > 0:
+		move_to_tuto_step(2)
+	else:
+		move_to_tuto_step(1)
 	var mana_generated = min(mana_per_click, mana_stored - mana_mined)
 	mana_mined += mana_generated
 	Game.level.generate_mana(mana_generated)
@@ -60,4 +74,4 @@ func _on_Gem_pressed():
 	scale = Vector3.ONE * float(mana_stored - mana_mined) / mana_stored
 	if mana_stored - mana_mined <= 0:
 		queue_free()
-		move_to_tuto_step(2)
+

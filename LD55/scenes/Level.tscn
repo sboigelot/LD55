@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/Level.gd" type="Script" id=1]
-[ext_resource path="res://scenes/Carriage.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Carriage/Carriage.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/WorldEnvironment.tres" type="Environment" id=3]
 [ext_resource path="res://scenes/Roads/RoadBase.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Fonts/Default/default_48.tres" type="DynamicFont" id=5]
@@ -33,6 +33,18 @@ np_buy_back_carrier_life_upgrade_cost_label = NodePath("MarginContainer/PanelCon
 np_buy_back_carrier_life_upgrade_button = NodePath("MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/BuyBCLUButton")
 np_buy_back_carrier_speed_upgrade_cost_label = NodePath("MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/CostLabel")
 np_buy_back_carrier_speed_upgrade_button = NodePath("MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BuyBCSUButton")
+np_buy_left_miner_cost_label = NodePath("MarginContainer/PanelContainer/VBoxContainer/LeftMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CostLabel")
+np_buy_left_miner_button = NodePath("MarginContainer/PanelContainer/VBoxContainer/LeftMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/BuyLMButton")
+np_buy_left_miner_life_upgrade_cost_label = NodePath("MarginContainer/PanelContainer/VBoxContainer/LeftMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/CostLabel")
+np_buy_left_miner_life_upgrade_button = NodePath("MarginContainer/PanelContainer/VBoxContainer/LeftMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/BuyLMLUButton")
+np_buy_left_miner_mining_upgrade_cost_label = NodePath("MarginContainer/PanelContainer/VBoxContainer/LeftMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/CostLabel")
+np_buy_left_miner_mining_upgrade_button = NodePath("MarginContainer/PanelContainer/VBoxContainer/LeftMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BuyLMMUButton")
+np_buy_right_miner_cost_label = NodePath("MarginContainer/PanelContainer/VBoxContainer/RightMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CostLabel")
+np_buy_right_miner_button = NodePath("MarginContainer/PanelContainer/VBoxContainer/RightMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/BuyRMButton")
+np_buy_right_miner_life_upgrade_cost_label = NodePath("MarginContainer/PanelContainer/VBoxContainer/RightMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/CostLabel")
+np_buy_right_miner_life_upgrade_button = NodePath("MarginContainer/PanelContainer/VBoxContainer/RightMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/BuyRMLUButton")
+np_buy_right_miner_mining_upgrade_cost_label = NodePath("MarginContainer/PanelContainer/VBoxContainer/RightMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/CostLabel")
+np_buy_right_miner_mining_upgrade_button = NodePath("MarginContainer/PanelContainer/VBoxContainer/RightMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BuyRMMUButton")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_bottom = 1.0
@@ -65,10 +77,98 @@ bbcode_text = "this is the debug bbcode"
 text = "this is the debug bbcode"
 fit_content_height = true
 
-[node name="FrontCarrier" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
+[node name="Mana" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
 margin_top = 44.0
 margin_right = 586.0
 margin_bottom = 163.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Mana"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 579.0
+margin_bottom = 112.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Mana/MarginContainer"]
+margin_right = 572.0
+margin_bottom = 105.0
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Mana/MarginContainer/VBoxContainer"]
+margin_right = 572.0
+margin_bottom = 39.0
+custom_fonts/font = ExtResource( 6 )
+text = "Mana: 452 / 1000"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/VBoxContainer/Mana/MarginContainer/VBoxContainer"]
+margin_top = 43.0
+margin_right = 572.0
+margin_bottom = 47.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Mana/MarginContainer/VBoxContainer"]
+margin_top = 51.0
+margin_right = 572.0
+margin_bottom = 105.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Mana/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 141.0
+margin_bottom = 54.0
+
+[node name="CostLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Mana/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_right = 141.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 7 )
+text = "30 mana"
+align = 1
+
+[node name="BuyFCButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/Mana/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 26.0
+margin_right = 141.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 7 )
+text = "Upgrade Regen"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Mana/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 145.0
+margin_right = 320.0
+margin_bottom = 54.0
+
+[node name="CostLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Mana/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+margin_right = 175.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 7 )
+text = "30 mana"
+align = 1
+
+[node name="BuyFCLUButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/Mana/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+margin_top = 26.0
+margin_right = 175.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 7 )
+text = "Upgrade Max Mana"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Mana/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 324.0
+margin_right = 452.0
+margin_bottom = 54.0
+
+[node name="CostLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Mana/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 128.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 7 )
+text = "30 mana"
+align = 1
+
+[node name="BuyFCSUButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/Mana/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 26.0
+margin_right = 128.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 7 )
+text = "Reduce Costs"
+
+[node name="FrontCarrier" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
+margin_top = 167.0
+margin_right = 586.0
+margin_bottom = 286.0
 size_flags_horizontal = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/FrontCarrier"]
@@ -85,7 +185,7 @@ margin_bottom = 105.0
 margin_right = 572.0
 margin_bottom = 39.0
 custom_fonts/font = ExtResource( 6 )
-text = "Front Carrier"
+text = "Front Carriers"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/VBoxContainer/FrontCarrier/MarginContainer/VBoxContainer"]
 margin_top = 43.0
@@ -154,9 +254,9 @@ custom_fonts/font = ExtResource( 7 )
 text = "Upgrade Speed"
 
 [node name="BackCarrier" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
-margin_top = 167.0
+margin_top = 290.0
 margin_right = 586.0
-margin_bottom = 286.0
+margin_bottom = 409.0
 size_flags_horizontal = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/BackCarrier"]
@@ -173,7 +273,7 @@ margin_bottom = 105.0
 margin_right = 572.0
 margin_bottom = 39.0
 custom_fonts/font = ExtResource( 6 )
-text = "Back Carrier"
+text = "Back Carriers"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer"]
 margin_top = 43.0
@@ -241,10 +341,188 @@ margin_bottom = 54.0
 custom_fonts/font = ExtResource( 7 )
 text = "Upgrade Speed"
 
+[node name="LeftMiners" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
+margin_top = 413.0
+margin_right = 586.0
+margin_bottom = 532.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/LeftMiners"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 579.0
+margin_bottom = 112.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/LeftMiners/MarginContainer"]
+margin_right = 572.0
+margin_bottom = 105.0
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/LeftMiners/MarginContainer/VBoxContainer"]
+margin_right = 572.0
+margin_bottom = 39.0
+custom_fonts/font = ExtResource( 6 )
+text = "Left Miners"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/VBoxContainer/LeftMiners/MarginContainer/VBoxContainer"]
+margin_top = 43.0
+margin_right = 572.0
+margin_bottom = 47.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/LeftMiners/MarginContainer/VBoxContainer"]
+margin_top = 51.0
+margin_right = 572.0
+margin_bottom = 105.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/LeftMiners/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 128.0
+margin_bottom = 54.0
+
+[node name="CostLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/LeftMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_right = 128.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 7 )
+text = "30 mana"
+align = 1
+
+[node name="BuyLMButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/LeftMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 26.0
+margin_right = 128.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 7 )
+text = "Summon new"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/LeftMiners/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 132.0
+margin_right = 252.0
+margin_bottom = 54.0
+
+[node name="CostLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/LeftMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+margin_right = 120.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 7 )
+text = "30 mana"
+align = 1
+
+[node name="BuyLMLUButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/LeftMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+margin_top = 26.0
+margin_right = 120.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 7 )
+text = "Upgrade Life"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/LeftMiners/MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
+margin_left = 256.0
+margin_right = 402.0
+margin_bottom = 54.0
+
+[node name="CostLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/LeftMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 146.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 7 )
+text = "30 mana"
+align = 1
+
+[node name="BuyLMMUButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/LeftMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 26.0
+margin_right = 146.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 7 )
+text = "Upgrade Mining"
+
+[node name="RightMiners" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
+margin_top = 536.0
+margin_right = 586.0
+margin_bottom = 655.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/RightMiners"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 579.0
+margin_bottom = 112.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/RightMiners/MarginContainer"]
+margin_right = 572.0
+margin_bottom = 105.0
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/RightMiners/MarginContainer/VBoxContainer"]
+margin_right = 572.0
+margin_bottom = 39.0
+custom_fonts/font = ExtResource( 6 )
+text = "Right Miners"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/VBoxContainer/RightMiners/MarginContainer/VBoxContainer"]
+margin_top = 43.0
+margin_right = 572.0
+margin_bottom = 47.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/RightMiners/MarginContainer/VBoxContainer"]
+margin_top = 51.0
+margin_right = 572.0
+margin_bottom = 105.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/RightMiners/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 128.0
+margin_bottom = 54.0
+
+[node name="CostLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/RightMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_right = 128.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 7 )
+text = "30 mana"
+align = 1
+
+[node name="BuyRMButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/RightMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 26.0
+margin_right = 128.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 7 )
+text = "Summon new"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/RightMiners/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 132.0
+margin_right = 252.0
+margin_bottom = 54.0
+
+[node name="CostLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/RightMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+margin_right = 120.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 7 )
+text = "30 mana"
+align = 1
+
+[node name="BuyRMLUButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/RightMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+margin_top = 26.0
+margin_right = 120.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 7 )
+text = "Upgrade Life"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/RightMiners/MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
+margin_left = 256.0
+margin_right = 402.0
+margin_bottom = 54.0
+
+[node name="CostLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/RightMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 146.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 7 )
+text = "30 mana"
+align = 1
+
+[node name="BuyRMMUButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/RightMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 26.0
+margin_right = 146.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 7 )
+text = "Upgrade Mining"
+
 [node name="UIFloatingLabelPlaceholder" type="Node2D" parent="MarginContainer"]
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.806125, -0.339411, 0.48473, 0, 0.819152, 0.573577, -0.591746, -0.462374, 0.660339, 2.585, 6, 7.138 )
+transform = Transform( 0.819152, -0.32899, 0.469847, 0, 0.819152, 0.573577, -0.573577, -0.469846, 0.67101, 2.5, 6, 7 )
 environment = ExtResource( 3 )
 projection = 1
 size = 10.0
@@ -276,9 +554,17 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 3 )
 
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/Mana/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/BuyFCLUButton" to="." method="_on_BuyFCLUButton_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/Mana/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BuyFCSUButton" to="." method="_on_BuyFCSUButton_pressed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/FrontCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/BuyFCButton" to="." method="_on_BuyFCButton_pressed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/FrontCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/BuyFCLUButton" to="." method="_on_BuyFCLUButton_pressed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/FrontCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BuyFCSUButton" to="." method="_on_BuyFCSUButton_pressed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/BuyBCButton" to="." method="_on_BuyBCButton_pressed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/BuyBCLUButton" to="." method="_on_BuyBCLUButton_pressed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BuyBCSUButton" to="." method="_on_BuyBCSUButton_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/LeftMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/BuyLMButton" to="." method="_on_BuyLMButton_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/LeftMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/BuyLMLUButton" to="." method="_on_BuyLMLUButton_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/LeftMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BuyLMMUButton" to="." method="_on_BuyLMMUButton_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/RightMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/BuyRMButton" to="." method="_on_BuyRMButton_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/RightMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/BuyRMLUButton" to="." method="_on_BuyRMLUButton_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/RightMiners/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BuyRMMUButton" to="." method="_on_BuyRMMUButton_pressed"]
