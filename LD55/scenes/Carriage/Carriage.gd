@@ -2,10 +2,15 @@ extends Spatial
 
 class_name Carriage
 
-export var starting_mana: float = 1000.0
-var mana: int
-
-var distance_travelled: float
+var mana: float = 10.0
+var mana_max: int = 100
+var mana_max_upgrade_base_cost = 50.0
+var mana_regen: float = 2.0
+var mana_regen_upgrade_base_cost: float = 25.0
+var spell_cost: float = 1.0
+var spell_cost_upgrade_base_cost: float = 100.0
+	
+var distance_travelled: float = 0.0
 var speed: float
 var back_carried: bool
 var front_carried: bool
@@ -21,7 +26,7 @@ var front_carrier_base_cost: int = 10
 var front_carrier_base_speed: float = 0.3
 var front_carrier_speed_upgrade_base_cost:int = 25
 var front_carrier_speed_multipler: float = 1.0
-var front_carrier_base_lifespan: float = 5.0
+var front_carrier_base_lifespan: float = 20.0
 var front_carrier_lifespan_upgrade_base_cost:int = 25
 var front_carrier_lifespan_multipler: float = 1.0
 
@@ -32,7 +37,7 @@ var back_carrier_base_cost: int = 10
 var back_carrier_base_speed: float = 0.3
 var back_carrier_speed_upgrade_base_cost:int = 25
 var back_carrier_speed_multipler: float = 1.0
-var back_carrier_base_lifespan: float = 5.0
+var back_carrier_base_lifespan: float = 20.0
 var back_carrier_lifespan_upgrade_base_cost:int = 25
 var back_carrier_lifespan_multipler: float = 1.0
 
@@ -42,7 +47,7 @@ var left_miner_lifes:Array = []
 var left_miner_base_cost: int = 10.0
 var left_miner_base_mining_speed: float = 1.0
 var left_miner_base_mining_amount: int = 10.0
-var left_miner_base_lifespan: float = 5.0
+var left_miner_base_lifespan: float = 10.0
 var left_miner_upgrade_base_cost: int = 25
 var left_miner_lifespan_multipler: float = 1.0
 
@@ -52,20 +57,25 @@ var right_miner_lifes:Array = []
 var right_miner_base_cost: int = 10.0
 var right_miner_base_mining_speed: float = 1.0
 var right_miner_base_mining_amount: int = 10.0
-var right_miner_base_lifespan: float = 5.0
+var right_miner_base_lifespan: float = 10.0
 var right_miner_upgrade_base_cost: int = 25
 var right_miner_lifespan_multipler: float = 1.0
 
-func _ready():
-	mana = starting_mana
-	distance_travelled = 0
-
 func _process(delta):
+	
+	if Game.level.is_paused():
+		return
+	
+	regen_mana(delta)
 	increase_summons_life(delta)
 	expire_old_summons()
 	update_visual_summons()
 	calculate_speed()
 	update_body_tilt_and_y()
+
+func regen_mana(delta):
+	mana += mana_regen * delta
+	mana = min(mana, mana_max)
 
 func single_play_body_animation(animation_name):
 	if previously_played_body_animation == animation_name:
@@ -107,16 +117,16 @@ func increase_summons_life(delta):
 		right_miner_lifes[i] += delta
 
 func get_front_carrier_lifespan():
-	return front_carrier_base_lifespan * (1.0 + front_carrier_lifespan_multipler)
+	return front_carrier_base_lifespan * front_carrier_lifespan_multipler
 
 func get_back_carrier_lifespan():
-	return back_carrier_base_lifespan * (1.0 + back_carrier_lifespan_multipler)
+	return back_carrier_base_lifespan * back_carrier_lifespan_multipler
 
 func get_left_miner_lifespan():
-	return left_miner_base_lifespan * (1.0 + left_miner_lifespan_multipler)
+	return left_miner_base_lifespan * left_miner_lifespan_multipler
 
 func get_right_miner_lifespan():
-	return right_miner_base_lifespan * (1.0 + right_miner_lifespan_multipler)
+	return right_miner_base_lifespan * right_miner_lifespan_multipler
 	
 func expire_old_summons():
 	_expire_old_summons(front_carrier_lifes, get_front_carrier_lifespan())
@@ -205,13 +215,25 @@ func upgrade_front_carrier_life():
 	front_carrier_lifespan_multipler += 0.25
 
 func get_new_front_carrier_cost() -> int:
-	return int(round(front_carrier_base_cost * (1.0 + 0.5 * front_carrier_lifes.size())))
+	var cost = front_carrier_base_cost * (1.0 + 0.5 * front_carrier_lifes.size())
+	return int(round(cost * spell_cost))
 	
 func get_front_carrier_speed_upgrade_cost() -> int:
-	return int(round(front_carrier_speed_upgrade_base_cost * front_carrier_speed_multipler))
+	var cost = front_carrier_speed_upgrade_base_cost * front_carrier_speed_multipler
+	return int(round(cost * spell_cost))
 	
 func get_front_carrier_life_upgrade_cost() -> int:
-	return int(round(front_carrier_lifespan_upgrade_base_cost * front_carrier_lifespan_multipler))
+	var cost = front_carrier_lifespan_upgrade_base_cost * front_carrier_lifespan_multipler
+	return int(round(cost * spell_cost))
+	
+func upgrade_mana_regen():
+	mana_regen += 1
+	
+func upgrade_mana_max():
+	mana_max += 100
+	
+func upgrade_spell_cost():
+	spell_cost *= 0.9
 	
 func upgrade_back_carrier_speed():
 	back_carrier_speed_multipler += 0.25
@@ -225,26 +247,51 @@ func upgrade_left_miner_life():
 func upgrade_right_miner_life():
 	right_miner_lifespan_multipler += 0.25
 	
+func get_mana_max_upgrade_cost() -> int:
+	var cost = 	(mana_max_upgrade_base_cost * 
+					(mana_max / 100) 
+				)
+	return int(round(cost * spell_cost))
+	
+func get_mana_regen_upgrade_cost() -> int:
+	var cost = 	(mana_regen_upgrade_base_cost * 
+					mana_regen * 
+					mana_regen)
+	return int(round(cost * spell_cost))
+	
+func get_spell_cost_upgrade_cost() -> int:
+	var cost = 	(spell_cost_upgrade_base_cost * 
+					spell_cost * 
+					spell_cost)
+	return int(round(cost * spell_cost))
+	
 func get_new_back_carrier_cost() -> int:
-	return int(round(back_carrier_base_cost * (1.0 + 0.5 * back_carrier_lifes.size())))
+	var cost = back_carrier_base_cost * (1.0 + 0.5 * back_carrier_lifes.size())
+	return int(round(cost * spell_cost))
 	
 func get_back_carrier_life_upgrade_cost() -> int:
-	return int(round(back_carrier_lifespan_upgrade_base_cost * back_carrier_lifespan_multipler))
+	var cost = back_carrier_lifespan_upgrade_base_cost * back_carrier_lifespan_multipler
+	return int(round(cost * spell_cost))
 	
 func get_back_carrier_speed_upgrade_cost() -> int:
-	return int(round(back_carrier_speed_upgrade_base_cost * back_carrier_speed_multipler))
+	var cost = back_carrier_speed_upgrade_base_cost * back_carrier_speed_multipler
+	return int(round(cost * spell_cost))
 
 func get_new_left_miner_cost() -> int:
-	return int(round(left_miner_base_cost * (1.0 + 0.5 * left_miner_lifes.size())))
+	var cost = left_miner_base_cost * (1.0 + 0.5 * left_miner_lifes.size())
+	return int(round(cost * spell_cost))
 	
 func get_new_right_miner_cost() -> int:
-	return int(round(right_miner_base_cost * (1.0 + 0.5 * right_miner_lifes.size())))
+	var cost = right_miner_base_cost * (1.0 + 0.5 * right_miner_lifes.size())
+	return int(round(cost * spell_cost))
 
 func get_left_miner_life_upgrade_cost() -> int:
-	return int(round(left_miner_upgrade_base_cost * left_miner_lifespan_multipler))
+	var cost = left_miner_upgrade_base_cost * left_miner_lifespan_multipler
+	return int(round(cost * spell_cost))
 	
 func get_right_miner_life_upgrade_cost() -> int:
-	return int(round(right_miner_upgrade_base_cost * right_miner_lifespan_multipler))
+	var cost = right_miner_upgrade_base_cost * right_miner_lifespan_multipler
+	return int(round(cost * spell_cost))
 
 func on_gem_reach_carriage(gem:Gem):
 	var is_gem_left = gem.translation.z > 0

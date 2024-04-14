@@ -10,6 +10,28 @@ onready var ui_floating_label_placeholder = get_node(np_floating_label_placehold
 var default_floating_label_offset = Vector2(0, -60)
 export var floatng_label_font:Font
 
+export(NodePath) var np_mana_title
+
+export(NodePath) var np_buy_mana_regen_label
+export(NodePath) var np_buy_mana_regen_button
+
+export(NodePath) var np_buy_mana_max_label
+export(NodePath) var np_buy_mana_max_button
+
+export(NodePath) var np_buy_spell_cost_label
+export(NodePath) var np_buy_spell_cost_button
+
+onready var ui_mana_title = get_node(np_mana_title) as Label
+
+onready var ui_buy_mana_regen_label = get_node(np_buy_mana_regen_label) as Label
+onready var ui_buy_mana_regen_button = get_node(np_buy_mana_regen_button) as Button
+
+onready var ui_buy_mana_max_label = get_node(np_buy_mana_max_label) as Label
+onready var ui_buy_mana_max_button = get_node(np_buy_mana_max_button) as Button
+
+onready var ui_buy_spell_cost_label = get_node(np_buy_spell_cost_label) as Label
+onready var ui_buy_spell_cost_button = get_node(np_buy_spell_cost_button) as Button
+
 export(NodePath) var np_buy_front_carrier_cost_label
 export(NodePath) var np_buy_front_carrier_button
 
@@ -86,13 +108,29 @@ onready var ui_buy_right_miner_mining_upgrade_button = get_node(np_buy_right_min
 const road_lenght:float = 30.0
 export(Array, String) var road_layout = [
 	"Gem1",
+	"Gem1",
 	"Base",
-	"Gem1", 
 	"Base",
 	"Gem1",
+	"Gem1", 
+	"Base", 
+	"Base",
+	"Gem1",
+	"Gem1",
+	"Gem1",
+	"Base",
+	"Base",
+	"Gem1",
+	"Gem1", 
+	"Base", 
+	"Base",
+	"Gem1",
+	"",
 ]
+onready var total_distance:float = ((road_layout.size() - 2) * road_lenght)
 
 var game_speed: float =  1.0
+export var time_left: float = 5.0 * 60.0
 
 onready var debug_rtb = $MarginContainer/PanelContainer/VBoxContainer/DebugRichTextLabel
 onready var carriage:Carriage = $Carriage
@@ -126,9 +164,10 @@ func _process(delta):
 	update_ui()
 	if is_paused():
 		return
-		
+	
+	update_time_left(delta)
 	move_roads(delta)
-
+	
 func move_roads(delta):
 	var travel = carriage.speed * game_speed * delta
 	carriage.distance_travelled += travel
@@ -140,22 +179,40 @@ func move_roads(delta):
 			if not load_next_road(road):
 				game_speed = 0.0
 				victory()
+	
+func update_time_left(delta):
+	if is_paused():
+		return
+		
+	time_left -= delta
+	if time_left <= 0.0:
+		defeat()
 
 func generate_mana(mana_generated):
 	carriage.mana += mana_generated
 
 func victory():
 	pass
+	
+func defeat():
+	pass
 
 func update_ui():
-	debug_rtb.bbcode_text = ("[b]mana:[/b] %d\n" + 
+	debug_rtb.bbcode_text = ("[b]Time Left:[/b] %2d:%2d\n" + 
 		"[b]speed:[/b] %.2f m/s\n" + 
-		"[b]distance:[/b] %.2f m\n") % [
-			carriage.mana,
+		"[b]distance:[/b] %.2f / %.2f m\n") % [
+			int(time_left) / 60,
+			int(time_left) % 60,
 			carriage.speed,
-			carriage.distance_travelled
+			carriage.distance_travelled,
+			total_distance
 		]
 		
+	ui_mana_title.text = "Mana: %d / %d" % [
+			carriage.mana,
+			carriage.mana_max	
+		]
+
 	update_shop_ui()
 
 func update_shop_item(cost_label, button, header, cost, can_add):
@@ -169,6 +226,30 @@ func update_shop_item(cost_label, button, header, cost, can_add):
 
 func update_shop_ui():
 	
+	update_shop_item(
+		ui_buy_mana_regen_label,
+		ui_buy_mana_regen_button,
+		"%+.2f /sec" % [carriage.mana_regen],
+		carriage.get_mana_regen_upgrade_cost(),
+		true
+	)
+	
+	update_shop_item(
+		ui_buy_mana_max_label,
+		ui_buy_mana_max_button,
+		"%d" % [carriage.mana_max],
+		carriage.get_mana_max_upgrade_cost(),
+		true
+	)
+
+	update_shop_item(
+		ui_buy_spell_cost_label,
+		ui_buy_spell_cost_button,
+		"%.2f" % [carriage.spell_cost],
+		carriage.get_spell_cost_upgrade_cost(),
+		true
+	)
+
 	update_shop_item(
 		ui_buy_front_carrier_cost_label,
 		ui_buy_front_carrier_button,
@@ -344,6 +425,20 @@ func _on_BuyRMLUButton_pressed():
 	carriage.upgrade_right_miner_life()
 	carriage.mana -= cost
 
-
 func _on_BuyRMMUButton_pressed():
 	pass # Replace with function body.
+
+func _on_BuyRegenButton_pressed():
+	var cost = carriage.get_mana_regen_upgrade_cost()
+	carriage.upgrade_mana_regen()
+	carriage.mana -= cost
+
+func _on_BuyMaxManaButton_pressed():
+	var cost = carriage.get_mana_max_upgrade_cost()
+	carriage.upgrade_mana_max()
+	carriage.mana -= cost
+
+func _on_BuySpellCostButton_pressed():
+	var cost = carriage.get_spell_cost_upgrade_cost()
+	carriage.upgrade_spell_cost()
+	carriage.mana -= cost

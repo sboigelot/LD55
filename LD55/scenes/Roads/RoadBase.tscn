@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/Roads/path_material.tres" type="Material" id=1]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 30, 10 )
@@ -8,3 +10,4 @@ size = Vector2( 30, 10 )
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
 skeleton = NodePath("../..")
+material/0 = ExtResource( 1 )
