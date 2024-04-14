@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/Carriage.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Carriers/carrier.glb" type="PackedScene" id=2]
@@ -6,16 +6,87 @@
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 4, 0.25, 2 )
 
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.65098, 0.380392, 0, 1 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 12, 0.25, 0.25 )
+
 [node name="Carriage" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+[node name="Body" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
 mesh = SubResource( 1 )
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
+material/0 = SubResource( 3 )
 
-[node name="carrier" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0 )
+[node name="MeshInstance2" type="MeshInstance" parent="Body"]
+mesh = SubResource( 2 )
+skeleton = NodePath("../../..")
+material/0 = SubResource( 3 )
 
-[node name="carrier2" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0 )
+[node name="FrontCarriers" type="Spatial" parent="."]
+
+[node name="carrier" parent="FrontCarriers" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.81241, 0, 0.713661 )
+
+[node name="carrier4" parent="FrontCarriers" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.84338, 0, -0.578723 )
+
+[node name="carrier5" parent="FrontCarriers" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.00005, 0, -0.585128 )
+
+[node name="carrier6" parent="FrontCarriers" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.06495, 0, 0.75285 )
+
+[node name="carrier8" parent="FrontCarriers" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.04206, 0, -0.622016 )
+
+[node name="carrier9" parent="FrontCarriers" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.10697, 0, 0.715962 )
+
+[node name="BackCarriers" type="Spatial" parent="."]
+
+[node name="carrier2" parent="BackCarriers" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8598, 0, 0.550826 )
+
+[node name="carrier12" parent="BackCarriers" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.87496, 0, -0.646878 )
+
+[node name="carrier13" parent="BackCarriers" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.92106, 0, 0.565987 )
+
+[node name="carrier15" parent="BackCarriers" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.93622, 0, -0.631717 )
+
+[node name="carrier16" parent="BackCarriers" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.96716, 0, 0.535665 )
+
+[node name="carrier18" parent="BackCarriers" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.98232, 0, -0.66204 )
+
+[node name="LeftMiners" type="Spatial" parent="."]
+
+[node name="carrier7" parent="LeftMiners" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00703016, 0, -2.07479 )
+
+[node name="carrier8" parent="LeftMiners" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0105288, 0, -3.08062 )
+
+[node name="carrier9" parent="LeftMiners" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0016219, 0, -4.04822 )
+
+[node name="RightMiners" type="Spatial" parent="."]
+
+[node name="carrier8" parent="RightMiners" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0128677, 0, 1.954 )
+
+[node name="carrier9" parent="RightMiners" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0175313, 0, 2.96006 )
+
+[node name="carrier10" parent="RightMiners" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00974998, 0, 3.99213 )

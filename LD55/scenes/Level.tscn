@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Carriage.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/WorldEnvironment.tres" type="Environment" id=3]
 [ext_resource path="res://scenes/Roads/RoadBase.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Fonts/Default/default_48.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Fonts/Default/default_32.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Fonts/Default/default_16.tres" type="DynamicFont" id=7]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 25, 5 )
@@ -16,6 +19,20 @@ albedo_color = Color( 0.223529, 0.0313726, 0.0313726, 1 )
 
 [node name="Level" type="Spatial"]
 script = ExtResource( 1 )
+np_floating_label_placeholder = NodePath("MarginContainer/UIFloatingLabelPlaceholder")
+floatng_label_font = ExtResource( 5 )
+np_buy_front_carrier_cost_label = NodePath("MarginContainer/PanelContainer/VBoxContainer/FrontCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CostLabel")
+np_buy_front_carrier_button = NodePath("MarginContainer/PanelContainer/VBoxContainer/FrontCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/BuyFCButton")
+np_buy_front_carrier_life_upgrade_cost_label = NodePath("MarginContainer/PanelContainer/VBoxContainer/FrontCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/CostLabel")
+np_buy_front_carrier_life_upgrade_button = NodePath("MarginContainer/PanelContainer/VBoxContainer/FrontCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/BuyFCLUButton")
+np_buy_front_carrier_speed_upgrade_cost_label = NodePath("MarginContainer/PanelContainer/VBoxContainer/FrontCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/CostLabel")
+np_buy_front_carrier_speed_upgrade_button = NodePath("MarginContainer/PanelContainer/VBoxContainer/FrontCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BuyFCSUButton")
+np_buy_back_carrier_cost_label = NodePath("MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CostLabel")
+np_buy_back_carrier_button = NodePath("MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/BuyBCButton")
+np_buy_back_carrier_life_upgrade_cost_label = NodePath("MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/CostLabel")
+np_buy_back_carrier_life_upgrade_button = NodePath("MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/BuyBCLUButton")
+np_buy_back_carrier_speed_upgrade_cost_label = NodePath("MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/CostLabel")
+np_buy_back_carrier_speed_upgrade_button = NodePath("MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BuyBCSUButton")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_bottom = 1.0
@@ -32,14 +49,199 @@ margin_right = 620.0
 margin_bottom = 1060.0
 rect_min_size = Vector2( 600, 0 )
 
-[node name="DebugRichTextLabel" type="RichTextLabel" parent="MarginContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 593.0
 margin_bottom = 1033.0
+
+[node name="DebugRichTextLabel" type="RichTextLabel" parent="MarginContainer/PanelContainer/VBoxContainer"]
+margin_right = 586.0
+margin_bottom = 40.0
+custom_fonts/bold_font = ExtResource( 5 )
+custom_fonts/normal_font = ExtResource( 6 )
 bbcode_enabled = true
 bbcode_text = "this is the debug bbcode"
 text = "this is the debug bbcode"
+fit_content_height = true
+
+[node name="FrontCarrier" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
+margin_top = 44.0
+margin_right = 586.0
+margin_bottom = 163.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/FrontCarrier"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 579.0
+margin_bottom = 112.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/FrontCarrier/MarginContainer"]
+margin_right = 572.0
+margin_bottom = 105.0
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/FrontCarrier/MarginContainer/VBoxContainer"]
+margin_right = 572.0
+margin_bottom = 39.0
+custom_fonts/font = ExtResource( 6 )
+text = "Front Carrier"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/VBoxContainer/FrontCarrier/MarginContainer/VBoxContainer"]
+margin_top = 43.0
+margin_right = 572.0
+margin_bottom = 47.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/FrontCarrier/MarginContainer/VBoxContainer"]
+margin_top = 51.0
+margin_right = 572.0
+margin_bottom = 105.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/FrontCarrier/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 128.0
+margin_bottom = 54.0
+
+[node name="CostLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/FrontCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_right = 128.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 7 )
+text = "30 mana"
+align = 1
+
+[node name="BuyFCButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/FrontCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 26.0
+margin_right = 128.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 7 )
+text = "Summon new"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/FrontCarrier/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 132.0
+margin_right = 252.0
+margin_bottom = 54.0
+
+[node name="CostLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/FrontCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+margin_right = 120.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 7 )
+text = "30 mana"
+align = 1
+
+[node name="BuyFCLUButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/FrontCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+margin_top = 26.0
+margin_right = 120.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 7 )
+text = "Upgrade Life"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/FrontCarrier/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 256.0
+margin_right = 397.0
+margin_bottom = 54.0
+
+[node name="CostLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/FrontCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 141.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 7 )
+text = "30 mana"
+align = 1
+
+[node name="BuyFCSUButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/FrontCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 26.0
+margin_right = 141.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 7 )
+text = "Upgrade Speed"
+
+[node name="BackCarrier" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
+margin_top = 167.0
+margin_right = 586.0
+margin_bottom = 286.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/BackCarrier"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 579.0
+margin_bottom = 112.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer"]
+margin_right = 572.0
+margin_bottom = 105.0
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer"]
+margin_right = 572.0
+margin_bottom = 39.0
+custom_fonts/font = ExtResource( 6 )
+text = "Back Carrier"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer"]
+margin_top = 43.0
+margin_right = 572.0
+margin_bottom = 47.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer"]
+margin_top = 51.0
+margin_right = 572.0
+margin_bottom = 105.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 128.0
+margin_bottom = 54.0
+
+[node name="CostLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_right = 128.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 7 )
+text = "30 mana"
+align = 1
+
+[node name="BuyBCButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 26.0
+margin_right = 128.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 7 )
+text = "Summon new"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 132.0
+margin_right = 252.0
+margin_bottom = 54.0
+
+[node name="CostLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+margin_right = 120.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 7 )
+text = "30 mana"
+align = 1
+
+[node name="BuyBCLUButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+margin_top = 26.0
+margin_right = 120.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 7 )
+text = "Upgrade Life"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 256.0
+margin_right = 397.0
+margin_bottom = 54.0
+
+[node name="CostLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 141.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 7 )
+text = "30 mana"
+align = 1
+
+[node name="BuyBCSUButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 26.0
+margin_right = 141.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 7 )
+text = "Upgrade Speed"
+
+[node name="UIFloatingLabelPlaceholder" type="Node2D" parent="MarginContainer"]
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 0.806125, -0.339411, 0.48473, 0, 0.819152, 0.573577, -0.591746, -0.462374, 0.660339, 2.585, 6, 7.138 )
@@ -57,7 +259,7 @@ shadow_color = Color( 0.223529, 0.223529, 0.223529, 1 )
 [node name="Roads" type="Spatial" parent="."]
 
 [node name="Road0" type="Spatial" parent="Roads"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Roads/Road0"]
 mesh = SubResource( 1 )
@@ -68,8 +270,15 @@ material/0 = SubResource( 2 )
 [node name="RoadBase" parent="Roads/Road1" instance=ExtResource( 4 )]
 
 [node name="Road3" type="Spatial" parent="Roads"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Roads/Road3"]
 mesh = SubResource( 1 )
 material/0 = SubResource( 3 )
+
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/FrontCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/BuyFCButton" to="." method="_on_BuyFCButton_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/FrontCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/BuyFCLUButton" to="." method="_on_BuyFCLUButton_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/FrontCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BuyFCSUButton" to="." method="_on_BuyFCSUButton_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/BuyBCButton" to="." method="_on_BuyBCButton_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/BuyBCLUButton" to="." method="_on_BuyBCLUButton_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/BackCarrier/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BuyBCSUButton" to="." method="_on_BuyBCSUButton_pressed"]

@@ -1,0 +1,150 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Utilities/2D/BuildingUI.gd" type="Script" id=1]
+[ext_resource path="res://Buildings/Economy/Roaster/Roaster1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Buildings/Economy/Farm/Farm1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Buildings/Towers/Express/ExpressTower.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Sprites/Icons/caravan.png" type="Texture" id=5]
+[ext_resource path="res://Buildings/Towers/Bombard/BombardTower.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Buildings/Towers/Hotspot/HotSpotTower.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Sprites/Icons/circle.svg" type="Texture" id=8]
+[ext_resource path="res://Utilities/2D/AccuIconButton.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Sprites/Icons/beans.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Icons/coffee.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Icons/bombard.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/Icons/hotspot.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/Icons/upgrade.png" type="Texture" id=14]
+[ext_resource path="res://Fonts/Default/default_22.tres" type="DynamicFont" id=15]
+[ext_resource path="res://Sprites/Icons/coins.png" type="Texture" id=16]
+[ext_resource path="res://Buildings/BuildingSite.tscn" type="PackedScene" id=17]
+
+[node name="BuildingUI" type="Node2D"]
+script = ExtResource( 1 )
+building_site_scene = ExtResource( 17 )
+farm_scene = ExtResource( 3 )
+roaster_scene = ExtResource( 2 )
+express_scene = ExtResource( 4 )
+bombard_scene = ExtResource( 6 )
+hotspot_scene = ExtResource( 7 )
+np_circle_texture_rect = NodePath("CircleTextureRect")
+np_farm_accu_button = NodePath("FarmAccumulatorButton")
+np_roaster_accu_button = NodePath("RoasterAccumulatorButton")
+np_express_accu_button = NodePath("ExpressAccumulatorButton")
+np_bombard_accu_button = NodePath("BombardAccumulatorButton")
+np_hotspot_accu_button = NodePath("HotSpotAccumulatorButton")
+np_upgrade_accu_button = NodePath("UpgradeAccumulatorButton")
+np_sell_accu_button = NodePath("SellAccumulatorButton")
+
+[node name="CircleTextureRect" type="TextureRect" parent="."]
+margin_left = -128.0
+margin_top = -128.0
+margin_right = 128.0
+margin_bottom = 128.0
+mouse_filter = 2
+texture = ExtResource( 8 )
+expand = true
+
+[node name="FarmAccumulatorButton" parent="." instance=ExtResource( 9 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -32.0
+margin_top = -160.0
+margin_right = 32.0
+margin_bottom = -96.0
+hint_tooltip = "Build a farm"
+font = ExtResource( 15 )
+font_color = Color( 1, 1, 1, 1 )
+icon = ExtResource( 10 )
+target_value = 5.0
+
+[node name="RoasterAccumulatorButton" parent="." instance=ExtResource( 9 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 96.0
+margin_top = -64.0
+margin_right = 160.0
+margin_bottom = 0.0
+hint_tooltip = "Build a roaster"
+font = ExtResource( 15 )
+font_color = Color( 1, 1, 1, 1 )
+icon = ExtResource( 11 )
+target_value = 5.0
+
+[node name="ExpressAccumulatorButton" parent="." instance=ExtResource( 9 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 32.0
+margin_top = 64.0
+margin_right = 96.0
+margin_bottom = 128.0
+hint_tooltip = "Build a express shop"
+font = ExtResource( 15 )
+font_color = Color( 1, 1, 1, 1 )
+icon = ExtResource( 5 )
+target_value = 5.0
+
+[node name="BombardAccumulatorButton" parent="." instance=ExtResource( 9 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -96.0
+margin_top = 64.0
+margin_right = -32.0
+margin_bottom = 128.0
+hint_tooltip = "Build a bombard"
+font = ExtResource( 15 )
+font_color = Color( 1, 1, 1, 1 )
+icon = ExtResource( 12 )
+target_value = 5.0
+
+[node name="HotSpotAccumulatorButton" parent="." instance=ExtResource( 9 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -160.0
+margin_top = -64.0
+margin_right = -96.0
+margin_bottom = 0.0
+hint_tooltip = "Build a hotspot"
+font = ExtResource( 15 )
+font_color = Color( 1, 1, 1, 1 )
+icon = ExtResource( 13 )
+target_value = 5.0
+
+[node name="UpgradeAccumulatorButton" parent="." instance=ExtResource( 9 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -96.0
+margin_top = 64.0
+margin_right = -32.0
+margin_bottom = 128.0
+hint_tooltip = "Upgrade"
+font = ExtResource( 15 )
+font_color = Color( 1, 1, 1, 1 )
+icon = ExtResource( 14 )
+target_value = 5.0
+
+[node name="SellAccumulatorButton" parent="." instance=ExtResource( 9 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 32.0
+margin_top = 64.0
+margin_right = 96.0
+margin_bottom = 128.0
+hint_tooltip = "Sell"
+font = ExtResource( 15 )
+font_color = Color( 1, 1, 1, 1 )
+icon = ExtResource( 16 )
+target_value = 5.0
+
+[connection signal="accumulated" from="FarmAccumulatorButton" to="." method="_on_FarmAccumulatorButton_accumulated"]
+[connection signal="clicked" from="FarmAccumulatorButton" to="." method="_on_FarmAccumulatorButton_clicked"]
+[connection signal="accumulated" from="RoasterAccumulatorButton" to="." method="_on_OverAccumulatorButton_accumulated"]
+[connection signal="clicked" from="RoasterAccumulatorButton" to="." method="_on_OverAccumulatorButton_clicked"]
+[connection signal="accumulated" from="ExpressAccumulatorButton" to="." method="_on_ExpressAccumulatorButton_accumulated"]
+[connection signal="clicked" from="ExpressAccumulatorButton" to="." method="_on_ExpressAccumulatorButton_clicked"]
+[connection signal="accumulated" from="BombardAccumulatorButton" to="." method="_on_BombardAccumulatorButton_accumulated"]
+[connection signal="clicked" from="BombardAccumulatorButton" to="." method="_on_BombardAccumulatorButton_clicked"]
+[connection signal="accumulated" from="HotSpotAccumulatorButton" to="." method="_on_HotSpotAccumulatorButton_accumulated"]
+[connection signal="clicked" from="HotSpotAccumulatorButton" to="." method="_on_HotSpotAccumulatorButton_clicked"]
+[connection signal="accumulated" from="UpgradeAccumulatorButton" to="." method="_on_UpgradeAccumulatorButton_accumulated"]
+[connection signal="clicked" from="UpgradeAccumulatorButton" to="." method="_on_UpgradeAccumulatorButton_clicked"]
+[connection signal="accumulated" from="SellAccumulatorButton" to="." method="_on_SellAccumulatorButton_accumulated"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
 [sub_resource type="PlaneMesh" id=1]
-size = Vector2( 25, 5 )
+size = Vector2( 30, 10 )
 
 [node name="RoadBase" type="Spatial"]
 

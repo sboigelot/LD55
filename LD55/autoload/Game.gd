@@ -1,9 +1,10 @@
 extends Node
 
-var current_world
+var level
 
 var road_scenes:Dictionary = {
-	"Base": preload("res://scenes/Roads/RoadBase.tscn")
+	"Base": preload("res://scenes/Roads/RoadBase.tscn"),
+	"Gem1": preload("res://scenes/Roads/RoadGem1.tscn"),
 }
 
 func instanciate_road(parent:Spatial, clear_child:bool, road_type:String)->Spatial:

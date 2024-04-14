@@ -1,0 +1,100 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Fonts/Default/default_28.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Utilities/2D/AccuButton.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.74902, 0.74902, 0.74902, 1 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.5, 0.5, 0.5, 1 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.95, 0.95, 0.95, 1 )
+border_width_bottom = 2
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+shadow_offset = Vector2( 5, 5 )
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0.843137, 0.105882, 0.521569 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[node name="AccumulatorButton" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1842.0
+margin_bottom = -1060.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+script = ExtResource( 2 )
+np_button = NodePath("Button")
+np_progress_bar = NodePath("ProgressBar")
+np_label = NodePath("MarginContainer/Label")
+text = "testdza"
+font = ExtResource( 1 )
+target_value = 5.0
+
+[node name="Button" type="Button" parent="."]
+margin_right = 131.0
+margin_bottom = 38.0
+focus_mode = 0
+size_flags_horizontal = 11
+size_flags_vertical = 3
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/disabled = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+margin_right = 131.0
+margin_bottom = 38.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+max_value = 5.0
+percent_visible = false
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 131.0
+margin_bottom = 38.0
+mouse_filter = 2
+custom_constants/margin_right = 15
+custom_constants/margin_top = 0
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 4
+
+[node name="Label" type="Label" parent="MarginContainer"]
+margin_left = 15.0
+margin_right = 116.0
+margin_bottom = 34.0
+custom_colors/font_color = Color( 0.439216, 0.34902, 0.133333, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "testdza"
+align = 1
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
