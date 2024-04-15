@@ -5,6 +5,7 @@ class_name Gem
 signal pressed
 signal mana_generated(amount)
 
+export var allow_player_click:bool = false
 export var mana_per_click:int = 1
 export var mana_stored:int = 50
 var mana_mined:int = 0
@@ -24,6 +25,7 @@ var passed_carriage: bool = false
 func _ready():
 	outline_mesh_instance.visible = false
 	Game.level.connect("tutorial_step_changed", self, "on_tutorial_step_changed")
+	update_tutorial()
 
 func _process(delta):
 	if not passed_carriage and global_translation.x <= 1.0:
@@ -34,6 +36,10 @@ func on_tutorial_step_changed():
 	update_tutorial()
 
 func update_tutorial():
+	if not allow_player_click:
+		tutorial_hover_label_3d.visible = false
+		return
+		
 	var step = Game.level.tutorial_step_gem_click
 
 	match(step):
@@ -51,6 +57,8 @@ func move_to_tuto_step(step):
 	Game.level.emit_signal("tutorial_step_changed")
 	
 func _on_Area_mouse_entered():
+	if not allow_player_click:
+		return
 	outline_mesh_instance.visible = true
 
 func _on_Area_mouse_exited():
@@ -58,6 +66,9 @@ func _on_Area_mouse_exited():
 
 func _on_Area_input_event(camera, event, position, normal, shape_idx):
 	
+	if not allow_player_click:
+		return
+		
 	if is_queued_for_deletion():
 		return
 		

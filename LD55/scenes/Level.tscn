@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Carriage/Carriage.tscn" type="PackedScene" id=2]
@@ -8,6 +8,11 @@
 [ext_resource path="res://Fonts/Default/default_32.tres" type="DynamicFont" id=6]
 [ext_resource path="res://Fonts/Default/default_12.tres" type="DynamicFont" id=7]
 [ext_resource path="res://scenes/ShopItem.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Sprites/tori.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/carriage.png" type="Texture" id=10]
+[ext_resource path="res://Fonts/Default/default_16.tres" type="DynamicFont" id=11]
+[ext_resource path="res://Sprites/shrine.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/crystal.png" type="Texture" id=13]
 
 [sub_resource type="StyleBoxFlat" id=5]
 content_margin_left = 10.0
@@ -26,6 +31,17 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxFlat" id=6]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 20.0
+content_margin_bottom = 20.0
+draw_center = false
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=8]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 25, 5 )
@@ -54,6 +70,8 @@ np_shop_item_left_apprentice = NodePath("LeftPanelMargin/LeftPanel/VBoxContainer
 np_shop_item_left_apprentice_lifespan = NodePath("LeftPanelMargin/LeftPanel/VBoxContainer/HBoxContainer/LeftMiners/VBoxContainer/HBoxContainer/ShopItemUpLAL")
 np_shop_item_right_apprentice = NodePath("LeftPanelMargin/LeftPanel/VBoxContainer/HBoxContainer/RightMiners/VBoxContainer/HBoxContainer/ShopItemNewRA")
 np_shop_item_right_apprentice_lifespan = NodePath("LeftPanelMargin/LeftPanel/VBoxContainer/HBoxContainer/RightMiners/VBoxContainer/HBoxContainer/ShopItemUpRAL")
+np_carriage_slider = NodePath("ProgressMap/VBoxContainer/SliderContainer/CarriageSlider")
+np_distance_rtl = NodePath("ProgressMap/VBoxContainer/DistanceRichTextLabel")
 
 [node name="LeftPanelMargin" type="MarginContainer" parent="."]
 anchor_bottom = 1.0
@@ -307,7 +325,7 @@ margin_top = 43.0
 margin_right = 304.0
 margin_bottom = 52.0
 custom_fonts/font = ExtResource( 7 )
-text = "Carry the cart for you, but cost mana"
+text = "Collect mana crytal for you, but cost mana"
 align = 2
 
 [node name="HSeparator" type="HSeparator" parent="LeftPanelMargin/LeftPanel/VBoxContainer/HBoxContainer/RightMiners/VBoxContainer"]
@@ -420,6 +438,112 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 
 [node name="UIFloatingLabelPlaceholder" type="Node2D" parent="LeftPanelMargin"]
+
+[node name="ProgressMap" type="MarginContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -120.0
+margin_right = -1174.0
+margin_bottom = -54.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 700
+custom_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ProgressMap"]
+margin_left = 700.0
+margin_top = 20.0
+margin_right = 1900.0
+margin_bottom = 103.0
+
+[node name="SliderContainer" type="PanelContainer" parent="ProgressMap/VBoxContainer"]
+margin_right = 1200.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 1200, 0 )
+size_flags_horizontal = 3
+custom_styles/panel = SubResource( 6 )
+
+[node name="EndSlider" type="HSlider" parent="ProgressMap/VBoxContainer/SliderContainer"]
+margin_left = 5.0
+margin_top = 20.0
+margin_right = 1195.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+custom_icons/grabber_disabled = ExtResource( 9 )
+value = 100.0
+editable = false
+scrollable = false
+
+[node name="CrystalSlider1" type="HSlider" parent="ProgressMap/VBoxContainer/SliderContainer"]
+margin_left = 5.0
+margin_top = 20.0
+margin_right = 1195.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+custom_icons/grabber_disabled = ExtResource( 13 )
+custom_styles/slider = SubResource( 7 )
+value = 10.0
+editable = false
+scrollable = false
+
+[node name="CrystalSlider2" type="HSlider" parent="ProgressMap/VBoxContainer/SliderContainer"]
+margin_left = 5.0
+margin_top = 20.0
+margin_right = 1195.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+custom_icons/grabber_disabled = ExtResource( 13 )
+custom_styles/slider = SubResource( 7 )
+value = 30.0
+editable = false
+scrollable = false
+
+[node name="CrystalSlider3" type="HSlider" parent="ProgressMap/VBoxContainer/SliderContainer"]
+margin_left = 5.0
+margin_top = 20.0
+margin_right = 1195.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+custom_icons/grabber_disabled = ExtResource( 13 )
+custom_styles/slider = SubResource( 7 )
+value = 75.0
+editable = false
+scrollable = false
+
+[node name="ShrineSlider1" type="HSlider" parent="ProgressMap/VBoxContainer/SliderContainer"]
+margin_left = 5.0
+margin_top = 20.0
+margin_right = 1195.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+custom_icons/grabber_disabled = ExtResource( 12 )
+custom_styles/slider = SubResource( 7 )
+value = 66.0
+editable = false
+scrollable = false
+
+[node name="CarriageSlider" type="HSlider" parent="ProgressMap/VBoxContainer/SliderContainer"]
+margin_left = 5.0
+margin_top = 20.0
+margin_right = 1195.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+custom_icons/grabber_disabled = ExtResource( 10 )
+custom_styles/slider = SubResource( 8 )
+value = 50.0
+editable = false
+scrollable = false
+
+[node name="DistanceRichTextLabel" type="RichTextLabel" parent="ProgressMap/VBoxContainer"]
+margin_top = 60.0
+margin_right = 1200.0
+margin_bottom = 83.0
+custom_fonts/normal_font = ExtResource( 11 )
+bbcode_enabled = true
+bbcode_text = "[center][color=#FF4400]Distance: %.2f / %.2f m\\tSpeed: %.2f m/s[/center]"
+text = "Distance: %.2f / %.2f m\\tSpeed: %.2f m/s[/center]"
+fit_content_height = true
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 0.819152, -0.32899, 0.469847, 0, 0.819152, 0.573576, -0.573577, -0.469846, 0.67101, 6.46337, 10.8384, 12.6603 )

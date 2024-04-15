@@ -49,11 +49,17 @@ export(NodePath) var np_shop_item_right_apprentice_lifespan
 onready var ui_shop_item_right_apprentice = get_node(np_shop_item_right_apprentice) as ShopItem
 onready var ui_shop_item_right_apprentice_lifespan = get_node(np_shop_item_right_apprentice_lifespan) as ShopItem
 
+export(NodePath) var np_carriage_slider
+export(NodePath) var np_distance_rtl
+
+onready var ui_carriage_slider = get_node(np_carriage_slider) as HSlider
+onready var ui_distance_rtl = get_node(np_distance_rtl) as RichTextLabel
+
 const road_lenght:float = 30.0
 export(Array, String) var road_layout = [
 	"Gem1",
-	"End",
 	"Shrine1",
+	"Base",
 	"Gem2",
 	"Base",
 	"Base",
@@ -119,6 +125,8 @@ func _process(delta):
 	
 	update_time_left(delta)
 	move_roads(delta)
+	ui_carriage_slider.max_value = total_distance
+	ui_carriage_slider.value = carriage.distance_travelled
 	
 func move_roads(delta):
 	var travel = carriage.speed * game_speed * delta
@@ -150,19 +158,20 @@ func defeat():
 	pass
 
 func update_ui():
-	debug_rtb.bbcode_text = ("[center][b]Time Left:[/b] %02d:%02d\n" + 
-		"[b]Speed:[/b] %.2f m/s\n" + 
-		"[b]Distance:[/b] %.2f / %.2f m[/center]") % [
+	debug_rtb.bbcode_text = ("[center][b]Time Left:[/b] %02d:%02d[/center]") % [
 			int(time_left) / 60,
-			int(time_left) % 60,
-			carriage.speed,
+			int(time_left) % 60
+		]
+		
+	ui_distance_rtl.bbcode_text = "[center][color=blue]Distance: %.2f / %.2f m\tSpeed: %.2f m/s[/color][/center]" %[
 			carriage.distance_travelled,
-			total_distance
+			total_distance,
+			carriage.speed
 		]
 		
 	ui_mana_title.text = "Mana: %d / %d" % [
 			carriage.mana,
-			carriage.mana_max	
+			carriage.mana_max
 		]
 
 	update_shop_ui()
@@ -171,7 +180,7 @@ func update_shop_item(shop_item:ShopItem, info, mana_cost, can_buy, visible = tr
 	shop_item.disabled = not can_buy
 	shop_item.mana_cost = mana_cost
 	shop_item.info = info
-	shop_item.visible = visible
+	shop_item.modulate = Color(1.0, 1.0, 1.0, 1.0 if visible else 0.3)
 
 func update_shop_ui():
 	
