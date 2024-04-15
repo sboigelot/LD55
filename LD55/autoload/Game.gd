@@ -5,6 +5,9 @@ var level
 var road_scenes:Dictionary = {
 	"Base": preload("res://scenes/Roads/RoadBase.tscn"),
 	"Gem1": preload("res://scenes/Roads/RoadGem1.tscn"),
+	"Gem2": preload("res://scenes/Roads/RoadGem2.tscn"),
+	"Shrine1": preload("res://scenes/Roads/RoadShrine1.tscn"),
+	"End": preload("res://scenes/Roads/RoadEnd.tscn"),
 }
 
 func instanciate_road(parent:Spatial, clear_child:bool, road_type:String)->Spatial:

@@ -25,6 +25,11 @@ _global_script_classes=[ {
 "path": "res://Utilities/3D/Actors.gd"
 }, {
 "base": "Spatial",
+"class": "AnimatedSummon",
+"language": "GDScript",
+"path": "res://scenes/AnimatedSummon.gd"
+}, {
+"base": "Spatial",
 "class": "Carriage",
 "language": "GDScript",
 "path": "res://scenes/Carriage/Carriage.gd"
@@ -49,7 +54,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Utilities/3D/FloatingLabel3D.gd"
 }, {
-"base": "Area",
+"base": "Spatial",
 "class": "Gem",
 "language": "GDScript",
 "path": "res://scenes/Gems/Gem.gd"
@@ -88,11 +93,22 @@ _global_script_classes=[ {
 "class": "SavableReference",
 "language": "GDScript",
 "path": "res://Utilities/Scripts/SavableReference.gd"
+}, {
+"base": "MarginContainer",
+"class": "ShopItem",
+"language": "GDScript",
+"path": "res://scenes/ShopItem.gd"
+}, {
+"base": "Spatial",
+"class": "Shrine",
+"language": "GDScript",
+"path": "res://scenes/Shrine/Shrine.gd"
 } ]
 _global_script_class_icons={
 "AccumularorSpatial": "",
 "AccumulatorButton": "",
 "Actor": "",
+"AnimatedSummon": "",
 "Carriage": "",
 "ClickableSpatial": "",
 "FloatingIcon3D": "",
@@ -105,7 +121,9 @@ _global_script_class_icons={
 "MultiLine3D": "",
 "ResourceAsyncLoader": "",
 "SavableNode": "",
-"SavableReference": ""
+"SavableReference": "",
+"ShopItem": "",
+"Shrine": ""
 }
 
 [application]

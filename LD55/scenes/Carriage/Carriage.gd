@@ -142,16 +142,28 @@ func _expire_old_summons(summon_lifes, max_life):
 	
 func update_visual_summons():
 	for i in front_carrier_visuals.size():
-		front_carrier_visuals[i].visible = i < front_carrier_lifes.size()
+		if front_carrier_visuals[i] is AnimatedSummon:
+			front_carrier_visuals[i].should_be_visible = i < front_carrier_lifes.size()
+		else:
+			front_carrier_visuals[i].visible = i < front_carrier_lifes.size()
 		
 	for i in back_carrier_visuals.size():
-		back_carrier_visuals[i].visible = i < back_carrier_lifes.size()
+		if back_carrier_visuals[i] is AnimatedSummon:
+			back_carrier_visuals[i].should_be_visible = i < back_carrier_lifes.size()
+		else:
+			back_carrier_visuals[i].visible = i < back_carrier_lifes.size()
 		
 	for i in left_miner_visuals.size():
-		left_miner_visuals[i].visible = i < left_miner_lifes.size()
+		if left_miner_visuals[i] is AnimatedSummon:
+			left_miner_visuals[i].should_be_visible = i < left_miner_lifes.size()
+		else:
+			left_miner_visuals[i].visible = i < left_miner_lifes.size()
 		
 	for i in right_miner_visuals.size():
-		right_miner_visuals[i].visible = i < right_miner_lifes.size()
+		if right_miner_visuals[i] is AnimatedSummon:
+			right_miner_visuals[i].should_be_visible = i < right_miner_lifes.size()
+		else:
+			right_miner_visuals[i].visible = i < right_miner_lifes.size()
 		
 		
 func get_front_carrier_speed() -> float:
@@ -260,10 +272,10 @@ func get_mana_regen_upgrade_cost() -> int:
 	return int(round(cost * spell_cost))
 	
 func get_spell_cost_upgrade_cost() -> int:
+	var e = 1.0 + abs(spell_cost - 1.0)
 	var cost = 	(spell_cost_upgrade_base_cost * 
-					spell_cost * 
-					spell_cost)
-	return int(round(cost * spell_cost))
+					e * e)
+	return int(round(cost))
 	
 func get_new_back_carrier_cost() -> int:
 	var cost = back_carrier_base_cost * (1.0 + 0.5 * back_carrier_lifes.size())

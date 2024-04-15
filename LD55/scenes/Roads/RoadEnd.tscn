@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/Roads/path_material.tres" type="Material" id=1]
 [ext_resource path="res://scenes/Roads/grass_material.tres" type="Material" id=2]
+[ext_resource path="res://scenes/Gate/gate.glb" type="PackedScene" id=3]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 30, 10 )
@@ -27,3 +28,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
 mesh = SubResource( 2 )
 skeleton = NodePath("../..")
 material/0 = ExtResource( 2 )
+
+[node name="Spatial" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.71807, 0, 0 )
+
+[node name="gate" parent="Spatial" instance=ExtResource( 3 )]
