@@ -292,12 +292,12 @@ func defeat():
 		"defeat")
 
 func update_ui():
-	debug_rtl.bbcode_text = ("[center][b]Time Left:[/b] %02d:%02d[/center]") % [
+	debug_rtl.bbcode_text = ("[center]TIME LEFT: %02d:%02d[/center]") % [
 			int(time_left) / 60,
 			int(time_left) % 60
 		]
 		
-	ui_distance_rtl.bbcode_text = "[center][color=blue]Distance: %.2f / %.2f m\tSpeed: %.2f m/s[/color][/center]" %[
+	ui_distance_rtl.bbcode_text = "[center][color=blue]Distance: %000.02f / %000.02f m\tSpeed: %.02f m/s[/color][/center]" %[
 			carriage.distance_travelled,
 			total_distance,
 			carriage.speed
