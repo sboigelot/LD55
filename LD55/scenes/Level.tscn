@@ -1,9 +1,8 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Scenes/Level.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Carriage/Carriage.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/WorldEnvironment.tres" type="Environment" id=3]
-[ext_resource path="res://Scenes/Roads/RoadBase.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Roads/RoadBase1.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Fonts/Default/default_28.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Fonts/Default/default_32.tres" type="DynamicFont" id=6]
 [ext_resource path="res://Fonts/Default/default_12.tres" type="DynamicFont" id=7]
@@ -13,7 +12,7 @@
 [ext_resource path="res://Fonts/Default/default_16.tres" type="DynamicFont" id=11]
 [ext_resource path="res://Fonts/Default/default_22.tres" type="DynamicFont" id=12]
 [ext_resource path="res://Scenes/Theme/BorderPanel.tres" type="StyleBox" id=13]
-[ext_resource path="res://Fonts/Default/default_48.tres" type="DynamicFont" id=14]
+[ext_resource path="res://Fonts/Default/default_64.tres" type="DynamicFont" id=14]
 [ext_resource path="res://Scenes/Theme/MainLevelPanel.tres" type="StyleBox" id=15]
 
 [sub_resource type="StyleBoxEmpty" id=10]
@@ -30,6 +29,39 @@ corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id=40]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 7.0
+bg_color = Color( 0.780392, 0.482353, 0.345098, 1 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id=41]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 7.0
+bg_color = Color( 0.729412, 0.568627, 0.345098, 1 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id=26]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 7.0
+bg_color = Color( 0.780392, 0.482353, 0.345098, 1 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [sub_resource type="StyleBoxEmpty" id=9]
 
@@ -63,7 +95,7 @@ np_shop_item_left_apprentice_lifespan = NodePath("HBoxContainer/LeftPanelMargin/
 np_shop_item_right_apprentice = NodePath("HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/HBoxContainer/RightMiners/VBoxContainer/HBoxContainer/ShopItemNewRA")
 np_shop_item_right_apprentice_lifespan = NodePath("HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/HBoxContainer/RightMiners/VBoxContainer/HBoxContainer/ShopItemUpRAL")
 np_carriage_slider = NodePath("HBoxContainer/RightPanelMargin/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/CarriageSlider")
-np_distance_rtl = NodePath("HBoxContainer/RightPanelMargin/HBoxContainer/VBoxContainer/VBoxContainer/DistanceRichTextLabel")
+np_distance_rtl = NodePath("HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/DistanceRichTextLabel")
 np_progress_map = NodePath("HBoxContainer/RightPanelMargin/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer/MapPinContainer")
 np_debug_rtl = NodePath("HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/DebugRichTextLabel")
 np_left_panel = NodePath("HBoxContainer/LeftPanelMargin/LeftPanel")
@@ -79,7 +111,7 @@ anchor_bottom = 1.0
 mouse_filter = 2
 
 [node name="LeftPanelMargin" type="MarginContainer" parent="HBoxContainer"]
-margin_right = 794.0
+margin_right = 722.0
 margin_bottom = 1080.0
 size_flags_vertical = 3
 custom_constants/margin_right = 10
@@ -90,7 +122,7 @@ custom_constants/margin_bottom = 20
 [node name="LeftPanel" type="PanelContainer" parent="HBoxContainer/LeftPanelMargin"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 784.0
+margin_right = 712.0
 margin_bottom = 1060.0
 rect_min_size = Vector2( 600, 0 )
 custom_styles/panel = ExtResource( 15 )
@@ -98,115 +130,125 @@ custom_styles/panel = ExtResource( 15 )
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LeftPanelMargin/LeftPanel"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 754.0
+margin_right = 682.0
 margin_bottom = 1030.0
 
 [node name="MarginContainer6" type="MarginContainer" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer"]
-margin_right = 744.0
-margin_bottom = 19.0
+margin_right = 672.0
+margin_bottom = 13.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 
 [node name="DebugRichTextLabel" type="RichTextLabel" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer"]
-margin_top = 23.0
-margin_right = 744.0
-margin_bottom = 80.0
-custom_colors/default_color = Color( 0.670588, 0.607843, 0.556863, 1 )
+margin_top = 17.0
+margin_right = 672.0
+margin_bottom = 92.0
+custom_colors/default_color = Color( 0.839216, 0.811765, 0.694118, 1 )
 custom_fonts/bold_font = ExtResource( 14 )
 custom_fonts/normal_font = ExtResource( 14 )
 bbcode_enabled = true
-bbcode_text = "[center]TiIME LEFT: 05:00"
-text = "TiIME LEFT: 05:00"
+bbcode_text = "[center]TIME LEFT: 05:00"
+text = "TIME LEFT: 05:00"
+fit_content_height = true
+
+[node name="DistanceRichTextLabel" type="RichTextLabel" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer"]
+margin_top = 96.0
+margin_right = 672.0
+margin_bottom = 164.0
+custom_colors/default_color = Color( 0.839216, 0.811765, 0.694118, 1 )
+custom_fonts/normal_font = ExtResource( 5 )
+bbcode_enabled = true
+bbcode_text = "[center]Distance: %.2f / %.2f m
+Speed: %.2f m/s[/center]"
+text = "Distance: %.2f / %.2f m
+Speed: %.2f m/s"
 fit_content_height = true
 
 [node name="MarginContainer5" type="MarginContainer" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer"]
-margin_top = 84.0
-margin_right = 744.0
-margin_bottom = 103.0
+margin_top = 168.0
+margin_right = 672.0
+margin_bottom = 181.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 
 [node name="Mana" type="PanelContainer" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer"]
-margin_left = 98.0
-margin_top = 107.0
-margin_right = 645.0
-margin_bottom = 314.0
+margin_left = 92.0
+margin_top = 185.0
+margin_right = 580.0
+margin_bottom = 377.0
 size_flags_horizontal = 6
 custom_styles/panel = ExtResource( 13 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/Mana"]
-margin_left = 25.0
+margin_left = 15.0
 margin_top = 10.0
-margin_right = 522.0
-margin_bottom = 182.0
+margin_right = 473.0
+margin_bottom = 167.0
 
 [node name="TitleLabel" type="Label" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/Mana/VBoxContainer"]
-margin_right = 497.0
-margin_bottom = 37.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 6 )
+margin_right = 458.0
+margin_bottom = 33.0
+custom_colors/font_color = Color( 0.294118, 0.239216, 0.266667, 1 )
+custom_fonts/font = ExtResource( 5 )
 text = "Mana: 452 / 1000"
 align = 1
 uppercase = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/Mana/VBoxContainer"]
-margin_top = 41.0
-margin_right = 497.0
-margin_bottom = 172.0
+margin_top = 37.0
+margin_right = 458.0
+margin_bottom = 157.0
 alignment = 1
 
 [node name="ManaRegenShopItem" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/Mana/VBoxContainer/HBoxContainer" instance=ExtResource( 8 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 179.0
-margin_bottom = 131.0
+margin_right = 150.0
+margin_bottom = 120.0
 title = "Mana Regen"
-background_color = Color( 0.54902, 0.670588, 0.631373, 1 )
 
 [node name="ManaMaxShopItem2" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/Mana/VBoxContainer/HBoxContainer" instance=ExtResource( 8 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 183.0
-margin_right = 333.0
-margin_bottom = 131.0
+margin_left = 154.0
+margin_right = 304.0
+margin_bottom = 120.0
 title = "Max Mana"
-background_color = Color( 0.54902, 0.670588, 0.631373, 1 )
 
 [node name="SpellCostShopItem3" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/Mana/VBoxContainer/HBoxContainer" instance=ExtResource( 8 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 337.0
-margin_right = 497.0
-margin_bottom = 131.0
+margin_left = 308.0
+margin_right = 458.0
+margin_bottom = 120.0
 title = "Spell Cost"
-background_color = Color( 0.54902, 0.670588, 0.631373, 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer"]
-margin_top = 318.0
-margin_right = 744.0
-margin_bottom = 337.0
+margin_top = 381.0
+margin_right = 672.0
+margin_bottom = 394.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 
 [node name="BackCarrier" type="PanelContainer" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer"]
-margin_left = 118.0
-margin_top = 341.0
-margin_right = 626.0
-margin_bottom = 548.0
+margin_left = 92.0
+margin_top = 398.0
+margin_right = 580.0
+margin_bottom = 590.0
 size_flags_horizontal = 6
 custom_styles/panel = ExtResource( 13 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/BackCarrier"]
-margin_left = 25.0
+margin_left = 15.0
 margin_top = 10.0
-margin_right = 483.0
-margin_bottom = 182.0
+margin_right = 473.0
+margin_bottom = 167.0
 
 [node name="TitleLabel" type="Label" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/BackCarrier/VBoxContainer"]
 margin_right = 458.0
-margin_bottom = 37.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 6 )
+margin_bottom = 33.0
+custom_colors/font_color = Color( 0.294118, 0.239216, 0.266667, 1 )
+custom_fonts/font = ExtResource( 5 )
 text = "Back Carriers"
 align = 1
 uppercase = true
@@ -226,67 +268,67 @@ margin_right = 576.0
 margin_bottom = 47.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/BackCarrier/VBoxContainer"]
-margin_top = 41.0
+margin_top = 37.0
 margin_right = 458.0
-margin_bottom = 172.0
+margin_bottom = 157.0
 
 [node name="ShopItemNewBC" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/BackCarrier/VBoxContainer/HBoxContainer" instance=ExtResource( 8 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 150.0
-margin_bottom = 131.0
+margin_bottom = 120.0
 title = "Carriers"
 info = "0"
-background_color = Color( 0.780392, 0.482353, 0.345098, 1 )
+background_color = Color( 0.945098, 0.556863, 0.478431, 1 )
 
 [node name="ShopItemUpBCL" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/BackCarrier/VBoxContainer/HBoxContainer" instance=ExtResource( 8 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 154.0
 margin_right = 304.0
-margin_bottom = 131.0
+margin_bottom = 120.0
 title = "Lifespan"
 info = "0 sec"
-background_color = Color( 0.780392, 0.482353, 0.345098, 1 )
+background_color = Color( 0.945098, 0.556863, 0.478431, 1 )
 
 [node name="ShopItemUpBCS" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/BackCarrier/VBoxContainer/HBoxContainer" instance=ExtResource( 8 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 308.0
 margin_right = 458.0
-margin_bottom = 131.0
+margin_bottom = 120.0
 title = "Speed"
 info = "0 m/sec"
-background_color = Color( 0.780392, 0.482353, 0.345098, 1 )
+background_color = Color( 0.945098, 0.556863, 0.478431, 1 )
 
 [node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer"]
-margin_top = 552.0
-margin_right = 744.0
-margin_bottom = 561.0
+margin_top = 594.0
+margin_right = 672.0
+margin_bottom = 600.0
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer"]
-margin_top = 565.0
-margin_right = 744.0
-margin_bottom = 772.0
+margin_top = 604.0
+margin_right = 672.0
+margin_bottom = 796.0
 
 [node name="LeftMiners" type="PanelContainer" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/HBoxContainer"]
-margin_right = 370.0
-margin_bottom = 207.0
+margin_right = 334.0
+margin_bottom = 192.0
 size_flags_horizontal = 3
 custom_styles/panel = ExtResource( 13 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/HBoxContainer/LeftMiners"]
-margin_left = 25.0
+margin_left = 15.0
 margin_top = 10.0
-margin_right = 345.0
-margin_bottom = 182.0
+margin_right = 319.0
+margin_bottom = 167.0
 
 [node name="TitleLabel" type="Label" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/HBoxContainer/LeftMiners/VBoxContainer"]
-margin_right = 320.0
-margin_bottom = 37.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 6 )
+margin_right = 304.0
+margin_bottom = 33.0
+custom_colors/font_color = Color( 0.294118, 0.239216, 0.266667, 1 )
+custom_fonts/font = ExtResource( 5 )
 text = "Left Apprentice"
 align = 1
 uppercase = true
@@ -306,28 +348,26 @@ margin_right = 281.0
 margin_bottom = 47.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/HBoxContainer/LeftMiners/VBoxContainer"]
-margin_top = 41.0
-margin_right = 320.0
-margin_bottom = 172.0
+margin_top = 37.0
+margin_right = 304.0
+margin_bottom = 157.0
 
 [node name="ShopItemNewLA" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/HBoxContainer/LeftMiners/VBoxContainer/HBoxContainer" instance=ExtResource( 8 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 166.0
-margin_bottom = 131.0
+margin_right = 150.0
+margin_bottom = 120.0
 title = "Apprentice"
 info = "0"
-background_color = Color( 0.54902, 0.670588, 0.631373, 1 )
 
 [node name="ShopItemUpLAL" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/HBoxContainer/LeftMiners/VBoxContainer/HBoxContainer" instance=ExtResource( 8 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 170.0
-margin_right = 320.0
-margin_bottom = 131.0
+margin_left = 154.0
+margin_right = 304.0
+margin_bottom = 120.0
 title = "Lifespan"
 info = "0 sec"
-background_color = Color( 0.54902, 0.670588, 0.631373, 1 )
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/HBoxContainer"]
 visible = false
@@ -336,24 +376,24 @@ margin_right = 312.0
 margin_bottom = 185.0
 
 [node name="RightMiners" type="PanelContainer" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/HBoxContainer"]
-margin_left = 374.0
-margin_right = 744.0
-margin_bottom = 207.0
+margin_left = 338.0
+margin_right = 672.0
+margin_bottom = 192.0
 size_flags_horizontal = 3
 custom_styles/panel = ExtResource( 13 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/HBoxContainer/RightMiners"]
-margin_left = 25.0
+margin_left = 15.0
 margin_top = 10.0
-margin_right = 345.0
-margin_bottom = 182.0
+margin_right = 319.0
+margin_bottom = 167.0
 alignment = 1
 
 [node name="TitleLabel" type="Label" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/HBoxContainer/RightMiners/VBoxContainer"]
-margin_right = 320.0
-margin_bottom = 37.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 6 )
+margin_right = 304.0
+margin_bottom = 33.0
+custom_colors/font_color = Color( 0.294118, 0.239216, 0.266667, 1 )
+custom_fonts/font = ExtResource( 5 )
 text = "Right Apprentice"
 align = 1
 uppercase = true
@@ -374,55 +414,53 @@ margin_right = 281.0
 margin_bottom = 47.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/HBoxContainer/RightMiners/VBoxContainer"]
-margin_top = 41.0
-margin_right = 320.0
-margin_bottom = 172.0
+margin_top = 37.0
+margin_right = 304.0
+margin_bottom = 157.0
 alignment = 2
 
 [node name="ShopItemNewRA" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/HBoxContainer/RightMiners/VBoxContainer/HBoxContainer" instance=ExtResource( 8 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 166.0
-margin_bottom = 131.0
+margin_right = 150.0
+margin_bottom = 120.0
 title = "Apprentice"
 info = "0"
-background_color = Color( 0.54902, 0.670588, 0.631373, 1 )
 
 [node name="ShopItemUpRAL" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/HBoxContainer/RightMiners/VBoxContainer/HBoxContainer" instance=ExtResource( 8 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 170.0
-margin_right = 320.0
-margin_bottom = 131.0
+margin_left = 154.0
+margin_right = 304.0
+margin_bottom = 120.0
 title = "Lifespan"
 info = "0 sec"
-background_color = Color( 0.54902, 0.670588, 0.631373, 1 )
 
 [node name="MarginContainer4" type="MarginContainer" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer"]
-margin_top = 776.0
-margin_right = 744.0
-margin_bottom = 786.0
+margin_top = 800.0
+margin_right = 672.0
+margin_bottom = 807.0
 size_flags_vertical = 3
 
 [node name="FrontCarrier" type="PanelContainer" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer"]
-margin_left = 118.0
-margin_top = 790.0
-margin_right = 626.0
-margin_bottom = 997.0
+margin_left = 92.0
+margin_top = 811.0
+margin_right = 580.0
+margin_bottom = 1003.0
 size_flags_horizontal = 6
 custom_styles/panel = ExtResource( 13 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/FrontCarrier"]
-margin_left = 25.0
+margin_left = 15.0
 margin_top = 10.0
-margin_right = 483.0
-margin_bottom = 182.0
+margin_right = 473.0
+margin_bottom = 167.0
 
 [node name="TitleLabel" type="Label" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/FrontCarrier/VBoxContainer"]
 margin_right = 458.0
-margin_bottom = 37.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 6 )
+margin_bottom = 33.0
+custom_colors/font_color = Color( 0.294118, 0.239216, 0.266667, 1 )
+custom_fonts/font = ExtResource( 5 )
 text = "Front Carriers"
 align = 1
 uppercase = true
@@ -443,43 +481,43 @@ margin_right = 576.0
 margin_bottom = 47.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/FrontCarrier/VBoxContainer"]
-margin_top = 41.0
+margin_top = 37.0
 margin_right = 458.0
-margin_bottom = 172.0
+margin_bottom = 157.0
 alignment = 2
 
 [node name="ShopItemNewFC" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/FrontCarrier/VBoxContainer/HBoxContainer" instance=ExtResource( 8 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 150.0
-margin_bottom = 131.0
+margin_bottom = 120.0
 title = "Carriers"
 info = "0"
-background_color = Color( 0.780392, 0.482353, 0.345098, 1 )
+background_color = Color( 0.945098, 0.556863, 0.478431, 1 )
 
 [node name="ShopItemUpFCL" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/FrontCarrier/VBoxContainer/HBoxContainer" instance=ExtResource( 8 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 154.0
 margin_right = 304.0
-margin_bottom = 131.0
+margin_bottom = 120.0
 title = "Lifespan"
 info = "0 sec"
-background_color = Color( 0.780392, 0.482353, 0.345098, 1 )
+background_color = Color( 0.945098, 0.556863, 0.478431, 1 )
 
 [node name="ShopItemUpFCS" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer/FrontCarrier/VBoxContainer/HBoxContainer" instance=ExtResource( 8 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 308.0
 margin_right = 458.0
-margin_bottom = 131.0
+margin_bottom = 120.0
 title = "Speed"
 info = "0 m/sec"
-background_color = Color( 0.780392, 0.482353, 0.345098, 1 )
+background_color = Color( 0.945098, 0.556863, 0.478431, 1 )
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/LeftPanelMargin/LeftPanel/VBoxContainer"]
-margin_top = 1001.0
-margin_right = 744.0
+margin_top = 1007.0
+margin_right = 672.0
 margin_bottom = 1020.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
@@ -487,7 +525,7 @@ size_flags_stretch_ratio = 2.0
 [node name="UIFloatingLabelPlaceholder" type="Node2D" parent="HBoxContainer/LeftPanelMargin"]
 
 [node name="RightPanelMargin" type="MarginContainer" parent="HBoxContainer"]
-margin_left = 798.0
+margin_left = 726.0
 margin_right = 1920.0
 margin_bottom = 1080.0
 mouse_filter = 2
@@ -500,35 +538,35 @@ custom_constants/margin_bottom = 20
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/RightPanelMargin"]
 margin_left = 10.0
 margin_top = 20.0
-margin_right = 1102.0
+margin_right = 1174.0
 margin_bottom = 1060.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/RightPanelMargin/HBoxContainer"]
-margin_right = 1092.0
+margin_right = 1164.0
 margin_bottom = 1040.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="MessageScreen" type="PanelContainer" parent="HBoxContainer/RightPanelMargin/HBoxContainer/VBoxContainer"]
-margin_right = 1092.0
-margin_bottom = 968.0
+margin_right = 1164.0
+margin_bottom = 995.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 10 )
 
 [node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/RightPanelMargin/HBoxContainer/VBoxContainer/MessageScreen"]
-margin_right = 1092.0
-margin_bottom = 968.0
+margin_right = 1164.0
+margin_bottom = 995.0
 mouse_filter = 2
 
 [node name="MessagePanel" type="PanelContainer" parent="HBoxContainer/RightPanelMargin/HBoxContainer/VBoxContainer/MessageScreen/CenterContainer"]
-margin_left = 246.0
-margin_top = 284.0
-margin_right = 846.0
-margin_bottom = 684.0
+margin_left = 282.0
+margin_top = 297.0
+margin_right = 882.0
+margin_bottom = 697.0
 rect_min_size = Vector2( 600, 400 )
 custom_styles/panel = SubResource( 11 )
 
@@ -550,14 +588,14 @@ uppercase = true
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/RightPanelMargin/HBoxContainer/VBoxContainer/MessageScreen/CenterContainer/MessagePanel/VBoxContainer"]
 margin_top = 41.0
 margin_right = 580.0
-margin_bottom = 337.0
+margin_bottom = 331.0
 size_flags_vertical = 3
 alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/RightPanelMargin/HBoxContainer/VBoxContainer/MessageScreen/CenterContainer/MessagePanel/VBoxContainer/VBoxContainer"]
-margin_top = 117.0
+margin_top = 114.0
 margin_right = 580.0
-margin_bottom = 178.0
+margin_bottom = 175.0
 size_flags_horizontal = 3
 custom_colors/default_color = Color( 0.670588, 0.607843, 0.556863, 1 )
 custom_fonts/bold_font = ExtResource( 5 )
@@ -570,13 +608,14 @@ Bold message"
 fit_content_height = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/RightPanelMargin/HBoxContainer/VBoxContainer/MessageScreen/CenterContainer/MessagePanel/VBoxContainer"]
-margin_top = 341.0
+margin_top = 335.0
 margin_right = 580.0
 margin_bottom = 380.0
 
 [node name="QuitButton" type="Button" parent="HBoxContainer/RightPanelMargin/HBoxContainer/VBoxContainer/MessageScreen/CenterContainer/MessagePanel/VBoxContainer/HBoxContainer2"]
 margin_right = 99.0
-margin_bottom = 39.0
+margin_bottom = 45.0
+focus_mode = 0
 custom_colors/font_color = Color( 0.670588, 0.607843, 0.556863, 1 )
 custom_colors/font_color_hover = Color( 0.823529, 0.788235, 0.647059, 1 )
 custom_colors/font_color_pressed = Color( 0.54902, 0.670588, 0.631373, 1 )
@@ -587,7 +626,8 @@ flat = true
 [node name="MessageSkipButton" type="Button" parent="HBoxContainer/RightPanelMargin/HBoxContainer/VBoxContainer/MessageScreen/CenterContainer/MessagePanel/VBoxContainer/HBoxContainer2"]
 margin_left = 103.0
 margin_right = 207.0
-margin_bottom = 39.0
+margin_bottom = 45.0
+focus_mode = 0
 custom_colors/font_color = Color( 0.670588, 0.607843, 0.556863, 1 )
 custom_colors/font_color_hover = Color( 0.823529, 0.788235, 0.647059, 1 )
 custom_colors/font_color_pressed = Color( 0.54902, 0.670588, 0.631373, 1 )
@@ -606,25 +646,30 @@ text = "Settings"
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/RightPanelMargin/HBoxContainer/VBoxContainer/MessageScreen/CenterContainer/MessagePanel/VBoxContainer/HBoxContainer2"]
 margin_left = 211.0
 margin_right = 580.0
-margin_bottom = 39.0
+margin_bottom = 45.0
 size_flags_horizontal = 3
 alignment = 2
 
 [node name="MessageOkButton" type="Button" parent="HBoxContainer/RightPanelMargin/HBoxContainer/VBoxContainer/MessageScreen/CenterContainer/MessagePanel/VBoxContainer/HBoxContainer2/HBoxContainer"]
-margin_left = 325.0
+margin_left = 208.0
 margin_right = 369.0
-margin_bottom = 39.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 161, 0 )
+focus_mode = 0
 custom_fonts/font = ExtResource( 5 )
-text = "Ok"
+custom_styles/hover = SubResource( 40 )
+custom_styles/pressed = SubResource( 41 )
+custom_styles/normal = SubResource( 26 )
+text = "Abracadabra"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/RightPanelMargin/HBoxContainer/VBoxContainer"]
-margin_top = 972.0
-margin_right = 1092.0
+margin_top = 999.0
+margin_right = 1164.0
 margin_bottom = 1040.0
 size_flags_horizontal = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/RightPanelMargin/HBoxContainer/VBoxContainer/VBoxContainer"]
-margin_right = 1092.0
+margin_right = 1164.0
 margin_bottom = 41.0
 size_flags_horizontal = 3
 custom_constants/margin_top = 5
@@ -632,7 +677,7 @@ custom_constants/margin_bottom = 20
 
 [node name="EndSlider" type="HSlider" parent="HBoxContainer/RightPanelMargin/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer"]
 margin_top = 5.0
-margin_right = 1092.0
+margin_right = 1164.0
 margin_bottom = 21.0
 size_flags_horizontal = 3
 custom_icons/grabber_disabled = ExtResource( 9 )
@@ -642,14 +687,14 @@ scrollable = false
 
 [node name="MapPinContainer" type="PanelContainer" parent="HBoxContainer/RightPanelMargin/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer"]
 margin_top = 5.0
-margin_right = 1092.0
+margin_right = 1164.0
 margin_bottom = 21.0
 size_flags_horizontal = 3
 custom_styles/panel = SubResource( 9 )
 
 [node name="CarriageSlider" type="HSlider" parent="HBoxContainer/RightPanelMargin/HBoxContainer/VBoxContainer/VBoxContainer/MarginContainer"]
 margin_top = 5.0
-margin_right = 1092.0
+margin_right = 1164.0
 margin_bottom = 21.0
 size_flags_horizontal = 3
 custom_icons/grabber_disabled = ExtResource( 10 )
@@ -657,19 +702,8 @@ custom_styles/slider = SubResource( 8 )
 editable = false
 scrollable = false
 
-[node name="DistanceRichTextLabel" type="RichTextLabel" parent="HBoxContainer/RightPanelMargin/HBoxContainer/VBoxContainer/VBoxContainer"]
-margin_top = 45.0
-margin_right = 1092.0
-margin_bottom = 68.0
-custom_fonts/normal_font = ExtResource( 11 )
-bbcode_enabled = true
-bbcode_text = "[center][color=blue]Distance: %.2f / %.2f m\\tSpeed: %.2f m/s[/center]"
-text = "Distance: %.2f / %.2f m\\tSpeed: %.2f m/s[/center]"
-fit_content_height = true
-
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.819152, -0.32899, 0.469847, 0, 0.819152, 0.573576, -0.573577, -0.469846, 0.67101, 6.46337, 10.8384, 12.6603 )
-environment = ExtResource( 3 )
+transform = Transform( 0.819152, -0.32899, 0.469847, 0, 0.819152, 0.573576, -0.573577, -0.469846, 0.67101, 5.63403, 10.8384, 12.6603 )
 projection = 1
 size = 10.0
 

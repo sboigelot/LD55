@@ -1,8 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/Roads/path_material.tres" type="Material" id=1]
 [ext_resource path="res://Scenes/Roads/grass_material.tres" type="Material" id=2]
 [ext_resource path="res://Scenes/Gate/gate.glb" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Decorations/WakeCup/tree1.glb" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Decorations/WakeCup/rock2.glb" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Decorations/WakeCup/tree2.glb" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Decorations/WakeCup/road.stump.glb" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Decorations/WakeCup/bench.glb" type="PackedScene" id=8]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 30, 10 )
@@ -33,3 +38,51 @@ material/0 = ExtResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.71807, 0, 0 )
 
 [node name="gate" parent="Spatial" instance=ExtResource( 3 )]
+
+[node name="rock2" parent="." instance=ExtResource( 5 )]
+transform = Transform( 0.171757, 0, -0.985139, 0, 1, 0, 0.985139, 0, 0.171757, -3.72156, 0.832159, 6.81488 )
+
+[node name="tree2" parent="." instance=ExtResource( 6 )]
+transform = Transform( -0.873279, 0, -0.48722, 0, 1, 0, 0.48722, 0, -0.873279, -2.57253, 0.907969, -7.21443 )
+
+[node name="tree3" parent="." instance=ExtResource( 6 )]
+transform = Transform( -0.873279, 0, -0.48722, 0, 1, 0, 0.48722, 0, -0.873279, -6.54226, 0.907969, -6.16053 )
+
+[node name="tree4" parent="." instance=ExtResource( 6 )]
+transform = Transform( -0.873279, 0, -0.48722, 0, 1, 0, 0.48722, 0, -0.873279, 6.05364, 0.907969, -8.08374 )
+
+[node name="tree5" parent="." instance=ExtResource( 6 )]
+transform = Transform( -0.873279, 0, -0.48722, 0, 1, 0, 0.48722, 0, -0.873279, 7.73733, 0.907969, 6.61844 )
+
+[node name="rock3" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.873279, 0, -0.48722, 0, 1, 0, 0.48722, 0, -0.873279, 11.1448, 0.832159, -6.60588 )
+
+[node name="tree1" parent="." instance=ExtResource( 4 )]
+transform = Transform( -0.873279, 0, -0.48722, 0, 1, 0, 0.48722, 0, -0.873279, -0.101204, 0.787632, -6.28481 )
+
+[node name="bench" parent="." instance=ExtResource( 8 )]
+transform = Transform( 0.0035779, 0, -0.999994, 0, 1, 0, 0.999994, 0, 0.0035779, 2.63424, 0, -4.0475 )
+
+[node name="bench2" parent="." instance=ExtResource( 8 )]
+transform = Transform( 0.0035779, 0, -0.999994, 0, 1, 0, 0.999994, 0, 0.0035779, 7.65199, 0, -4.08368 )
+
+[node name="bench3" parent="." instance=ExtResource( 8 )]
+transform = Transform( -0.00947687, 0, 0.999955, 0, 1, 0, -0.999955, 0, -0.00947687, 7.65663, -9.53674e-07, 4.27441 )
+
+[node name="roadstump" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28357, 0, -4.23393 )
+
+[node name="roadstump2" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.91673, 0, -4.23393 )
+
+[node name="roadstump3" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.94709, 0, -4.23393 )
+
+[node name="roadstump4" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.26338, 0, -4.23393 )
+
+[node name="roadstump5" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.26338, 0, 4.19353 )
+
+[node name="roadstump6" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.15416, 0, 4.19353 )

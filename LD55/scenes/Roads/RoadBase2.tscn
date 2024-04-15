@@ -34,10 +34,10 @@ skeleton = NodePath("../..")
 material/0 = ExtResource( 2 )
 
 [node name="bushy" parent="." instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.02183, 0.720164, 6.85257 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.72077, 0.720164, 6.34509 )
 
 [node name="bushy2" parent="." instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3923, 0.720164, 6.29206 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1689, 0.672775, 6.17189 )
 
 [node name="bushy3" parent="." instance=ExtResource( 5 )]
 transform = Transform( 0.422601, 0, 0, 0, 0.422601, 0, 0, 0, 0.422601, -3.87078, 0.720164, 6.72916 )
@@ -46,10 +46,22 @@ transform = Transform( 0.422601, 0, 0, 0, 0.422601, 0, 0, 0, 0.422601, -3.87078,
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.24876, 0.455646, -7.21468 )
 
 [node name="rock2" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1.28969, 0, -0.921965, 0, 1, 0, 0.921965, 0, 1.28969, -8.37435, 0.748056, -6.93038 )
-
-[node name="tree1" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.81785, 0, -7.38112 )
+transform = Transform( 1.28969, 0, -0.921965, 0, 1, 0, 0.921965, 0, 1.28969, -8.37435, 0.617226, -6.55893 )
 
 [node name="tree2" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7027, 0, -6.96846 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20958, 0.996671, -6.76191 )
+
+[node name="tree3" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.999926, 0, 0.0121472, 0, 1, 0, -0.0121472, 0, 0.999926, -4.28556, 0.996671, -5.9327 )
+
+[node name="bushy4" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.46278, 0.517521, -6.41264 )
+
+[node name="rock3" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.394038, -0.919094, 0, 0.919094, 0.394038, -0.00308418, 1.20936, 6.3561 )
+
+[node name="rock4" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.173803, 0.388041, -0.905106, -0.405596, 0.865727, 0.293274, 0.897376, 0.316135, 0.307854, -0.00308418, 0.853983, 5.79855 )
+
+[node name="tree1" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4485, 0.951871, -6.03669 )

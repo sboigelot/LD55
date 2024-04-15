@@ -29,7 +29,7 @@ func _on_FullscreenButton_pressed():
 
 func _ready():
 	update_sound_sliders()
-	
+
 func _input(event):
 	if Input.is_action_just_released("ui_cancel"):
 		Game.quit()

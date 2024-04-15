@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scenes/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Roads/RoadEnd.tscn" type="PackedScene" id=2]
@@ -6,53 +6,53 @@
 [ext_resource path="res://Fonts/Default/default_16.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Scenes/WorldEnvironment.tres" type="Environment" id=5]
 [ext_resource path="res://Sprites/UI/play_button_pressed.svg" type="Texture" id=6]
-[ext_resource path="res://Sprites/UI/play_button_disabled.svg" type="Texture" id=7]
 [ext_resource path="res://Sprites/UI/play_button_normal.svg" type="Texture" id=8]
 [ext_resource path="res://Sprites/UI/play_button_hover.svg" type="Texture" id=9]
+[ext_resource path="res://Sprites/UI/fullscreen_button_pressed.svg" type="Texture" id=10]
+[ext_resource path="res://Sprites/UI/fullscreen_button_hover.svg" type="Texture" id=11]
+[ext_resource path="res://Sprites/UI/fullscreen_button_normal.svg" type="Texture" id=12]
 
-[sub_resource type="StyleBoxTexture" id=31]
+[sub_resource type="StyleBoxTexture" id=37]
 texture = ExtResource( 9 )
-region_rect = Rect2( 0, 0, 183, 108 )
+region_rect = Rect2( 0, 0, 366, 108 )
 
-[sub_resource type="StyleBoxTexture" id=32]
+[sub_resource type="StyleBoxTexture" id=38]
 texture = ExtResource( 6 )
-region_rect = Rect2( 0, 0, 183, 108 )
+region_rect = Rect2( 0, 0, 366, 108 )
 
-[sub_resource type="StyleBoxTexture" id=33]
-texture = ExtResource( 7 )
-region_rect = Rect2( 0, 0, 183, 108 )
-
-[sub_resource type="StyleBoxTexture" id=30]
+[sub_resource type="StyleBoxTexture" id=39]
 texture = ExtResource( 8 )
-region_rect = Rect2( 0, 0, 183, 108 )
+region_rect = Rect2( 0, 0, 366, 108 )
 
-[sub_resource type="StyleBoxFlat" id=27]
+[sub_resource type="StyleBoxTexture" id=34]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 366, 108 )
+
+[sub_resource type="StyleBoxTexture" id=35]
+texture = ExtResource( 10 )
+region_rect = Rect2( 0, 0, 366, 108 )
+
+[sub_resource type="StyleBoxTexture" id=36]
+texture = ExtResource( 12 )
+region_rect = Rect2( 0, 0, 366, 108 )
+
+[sub_resource type="StyleBoxFlat" id=40]
 content_margin_left = 5.0
 content_margin_right = 5.0
 content_margin_top = 5.0
 content_margin_bottom = 7.0
-bg_color = Color( 0.733333, 0.768627, 0.6, 1 )
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_width_bottom = 8
-border_color = Color( 0, 0, 0, 1 )
+bg_color = Color( 0.780392, 0.482353, 0.345098, 1 )
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
-[sub_resource type="StyleBoxFlat" id=29]
+[sub_resource type="StyleBoxFlat" id=41]
 content_margin_left = 5.0
 content_margin_right = 5.0
 content_margin_top = 5.0
 content_margin_bottom = 7.0
-bg_color = Color( 0.504737, 0.53, 0.4134, 1 )
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_width_bottom = 8
-border_color = Color( 0, 0, 0, 1 )
+bg_color = Color( 0.729412, 0.568627, 0.345098, 1 )
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
@@ -63,32 +63,11 @@ content_margin_left = 5.0
 content_margin_right = 5.0
 content_margin_top = 5.0
 content_margin_bottom = 7.0
-bg_color = Color( 0.392157, 0.615686, 0.631373, 1 )
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_width_bottom = 8
-border_color = Color( 0, 0, 0, 1 )
+bg_color = Color( 0.780392, 0.482353, 0.345098, 1 )
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
-
-[sub_resource type="StyleBoxFlat" id=28]
-content_margin_left = 5.0
-content_margin_right = 5.0
-content_margin_top = 5.0
-content_margin_bottom = 7.0
-bg_color = Color( 0.278431, 0.54902, 0.74902, 1 )
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color( 0.854902, 0.901961, 0.937255, 1 )
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -147,16 +126,16 @@ custom_constants/separation = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 margin_right = 730.0
-margin_bottom = 395.0
+margin_bottom = 393.0
 rect_min_size = Vector2( 730, 0 )
 size_flags_horizontal = 0
 custom_constants/separation = 20
 
 [node name="PlayLevel1Button" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer"]
-margin_left = 273.0
-margin_right = 456.0
+margin_left = 182.0
+margin_right = 548.0
 margin_bottom = 108.0
-rect_min_size = Vector2( 183, 108 )
+rect_min_size = Vector2( 366, 108 )
 rect_pivot_offset = Vector2( 41.5, 10 )
 focus_mode = 0
 size_flags_horizontal = 4
@@ -167,20 +146,20 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 3 )
-custom_styles/hover = SubResource( 31 )
-custom_styles/pressed = SubResource( 32 )
-custom_styles/disabled = SubResource( 33 )
-custom_styles/normal = SubResource( 30 )
+custom_styles/hover = SubResource( 37 )
+custom_styles/pressed = SubResource( 38 )
+custom_styles/normal = SubResource( 39 )
 enabled_focus_mode = 0
 
 [node name="FullscreenButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_left = 182.0
 margin_top = 128.0
-margin_right = 730.0
-margin_bottom = 238.0
-rect_min_size = Vector2( 730, 110 )
+margin_right = 548.0
+margin_bottom = 236.0
+rect_min_size = Vector2( 366, 108 )
 rect_pivot_offset = Vector2( 41.5, 10 )
 focus_mode = 0
-size_flags_horizontal = 3
+size_flags_horizontal = 6
 size_flags_vertical = 4
 custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
 custom_colors/font_color_focus = Color( 0, 0, 0, 1 )
@@ -188,16 +167,15 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 3 )
-custom_styles/hover = SubResource( 27 )
-custom_styles/pressed = SubResource( 29 )
-custom_styles/normal = SubResource( 26 )
+custom_styles/hover = SubResource( 34 )
+custom_styles/pressed = SubResource( 35 )
+custom_styles/normal = SubResource( 36 )
 enabled_focus_mode = 0
-text = "Toggle Fullscreen (F11)"
 
 [node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer"]
-margin_top = 258.0
+margin_top = 256.0
 margin_right = 730.0
-margin_bottom = 395.0
+margin_bottom = 393.0
 custom_constants/margin_top = 30
 
 [node name="MusicControl" type="GridContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3"]
@@ -256,7 +234,7 @@ rect_min_size = Vector2( 300, 0 )
 size_flags_vertical = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
-margin_top = 405.0
+margin_top = 403.0
 margin_right = 730.0
 margin_bottom = 645.0
 size_flags_vertical = 3
@@ -290,8 +268,8 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 3 )
-custom_styles/hover = SubResource( 27 )
-custom_styles/pressed = SubResource( 28 )
+custom_styles/hover = SubResource( 40 )
+custom_styles/pressed = SubResource( 41 )
 custom_styles/normal = SubResource( 26 )
 enabled_focus_mode = 0
 text = "Quit"

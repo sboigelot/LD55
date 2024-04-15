@@ -60,22 +60,22 @@ var road_layout = [
 	"Gem1",
 	"Gem2",
 	"Shrine1",
-	"Base",
+	"Base1",
 	"Gem2",
-	"Base",
-	"Base",
-	"Gem1", 
-	"Base", 
-	"Base",
+	"Base1",
+	"Base2",
+	"Gem1",
+	"Shrine1",
+	"Base2", 
+	"Base1",
 	"Gem1",
 	"Shrine1",
 	"Gem1",
-	"Base",
-	"Base",
+	"Base1",
+	"Base2",
 	"Gem1",
 	"Gem2", 
-	"Base", 
-	"Base",
+	"Base2", 
 	"Gem1",
 	"End",
 	"",
@@ -157,7 +157,7 @@ func _ready():
 				"You need to summon magical carriers to help you." +
 			"[/center]"
 		),
-		"Alacazam",
+		"Alacazam!",
 		"intro1")
 		
 	create_progress_map()
@@ -183,7 +183,7 @@ func _on_MessageOkButton_pressed():
 						"That's it, no more tutorial, good luck!" +
 					"[/center]"
 				),
-				"Abracadabra",
+				"Abracadabra!",
 				"intro2")
 				
 		"victory":
@@ -297,7 +297,7 @@ func update_ui():
 			int(time_left) % 60
 		]
 		
-	ui_distance_rtl.bbcode_text = "[center][color=blue]Distance: %000.02f / %000.02f m\tSpeed: %.02f m/s[/color][/center]" %[
+	ui_distance_rtl.bbcode_text = "[center]Distance: %d / %d m\nSpeed: %.02f m/s[/center]" %[
 			carriage.distance_travelled,
 			total_distance,
 			carriage.speed

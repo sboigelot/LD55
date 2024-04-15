@@ -5,7 +5,8 @@ export var transition_colors:PoolColorArray
 var level
 
 var road_scenes:Dictionary = {
-	"Base": preload("res://Scenes/Roads/RoadBase.tscn"),
+	"Base1": preload("res://Scenes/Roads/RoadBase1.tscn"),
+	"Base2": preload("res://Scenes/Roads/RoadBase2.tscn"),
 	"Gem1": preload("res://Scenes/Roads/RoadGem1.tscn"),
 	"Gem2": preload("res://Scenes/Roads/RoadGem2.tscn"),
 	"Shrine1": preload("res://Scenes/Roads/RoadShrine1.tscn"),
@@ -18,7 +19,7 @@ func instanciate_road(parent:Spatial, clear_child:bool, road_type:String)->Spati
 			child.queue_free()
 	
 	if not road_scenes.has(road_type):
-		road_type = "Base"
+		road_type = "Base1"
 		
 	var road_scene = road_scenes[road_type]
 	var instance = road_scene.instance()
