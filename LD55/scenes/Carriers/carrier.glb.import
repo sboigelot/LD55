@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/carrier.glb-59472348759b588e2f2ada226ded1637.scn"
+path="res://.import/carrier.glb-112b690fbe3c19d77d3e2447eb56f96d.scn"
 
 [deps]
 
-source_file="res://scenes/Carriers/carrier.glb"
-dest_files=[ "res://.import/carrier.glb-59472348759b588e2f2ada226ded1637.scn" ]
+source_file="res://Scenes/Carriers/carrier.glb"
+dest_files=[ "res://.import/carrier.glb-112b690fbe3c19d77d3e2447eb56f96d.scn" ]
 
 [params]
 

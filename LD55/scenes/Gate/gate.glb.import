@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/gate.glb-1a76637d62a366b2c2611bb58be1a948.scn"
+path="res://.import/gate.glb-edfa5ef7480749c3fc292155bebe465a.scn"
 
 [deps]
 
-source_file="res://scenes/Gate/gate.glb"
-dest_files=[ "res://.import/gate.glb-1a76637d62a366b2c2611bb58be1a948.scn" ]
+source_file="res://Scenes/Gate/gate.glb"
+dest_files=[ "res://.import/gate.glb-edfa5ef7480749c3fc292155bebe465a.scn" ]
 
 [params]
 

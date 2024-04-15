@@ -1,12 +1,12 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://scenes/Roads/path_material.tres" type="Material" id=1]
-[ext_resource path="res://scenes/Roads/grass_material.tres" type="Material" id=2]
-[ext_resource path="res://scenes/Decorations/WakeCup/bushy.glb" type="PackedScene" id=3]
-[ext_resource path="res://scenes/Decorations/WakeCup/rock1.glb" type="PackedScene" id=4]
-[ext_resource path="res://scenes/Decorations/WakeCup/tree2.glb" type="PackedScene" id=5]
-[ext_resource path="res://scenes/Decorations/WakeCup/tree1.glb" type="PackedScene" id=6]
-[ext_resource path="res://scenes/Decorations/WakeCup/rock2.glb" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Roads/path_material.tres" type="Material" id=1]
+[ext_resource path="res://Scenes/Roads/grass_material.tres" type="Material" id=2]
+[ext_resource path="res://Scenes/Decorations/WakeCup/rock2.glb" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Decorations/WakeCup/tree2.glb" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Decorations/WakeCup/bushy.glb" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Decorations/WakeCup/rock1.glb" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Decorations/WakeCup/tree1.glb" type="PackedScene" id=7]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 30, 10 )
@@ -33,23 +33,23 @@ mesh = SubResource( 2 )
 skeleton = NodePath("../..")
 material/0 = ExtResource( 2 )
 
-[node name="bushy" parent="." instance=ExtResource( 3 )]
+[node name="bushy" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.02183, 0.720164, 6.85257 )
 
-[node name="bushy2" parent="." instance=ExtResource( 3 )]
+[node name="bushy2" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3923, 0.720164, 6.29206 )
 
-[node name="bushy3" parent="." instance=ExtResource( 3 )]
+[node name="bushy3" parent="." instance=ExtResource( 5 )]
 transform = Transform( 0.422601, 0, 0, 0, 0.422601, 0, 0, 0, 0.422601, -3.87078, 0.720164, 6.72916 )
 
-[node name="rock1" parent="." instance=ExtResource( 4 )]
+[node name="rock1" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.24876, 0.455646, -7.21468 )
 
-[node name="rock2" parent="." instance=ExtResource( 7 )]
+[node name="rock2" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1.28969, 0, -0.921965, 0, 1, 0, 0.921965, 0, 1.28969, -8.37435, 0.748056, -6.93038 )
 
-[node name="tree1" parent="." instance=ExtResource( 6 )]
+[node name="tree1" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.81785, 0, -7.38112 )
 
-[node name="tree2" parent="." instance=ExtResource( 5 )]
+[node name="tree2" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7027, 0, -6.96846 )

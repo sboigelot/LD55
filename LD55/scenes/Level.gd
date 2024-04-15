@@ -84,8 +84,8 @@ onready var total_distance:float = ((road_layout.size() - 2) * road_lenght)
 
 export(NodePath) var np_progress_map
 onready var progress_map = get_node(np_progress_map) as Container
-var progress_map_crystal_slider_scene = preload("res://scenes/ProgressMap/CrystalSlider.tscn")
-var progress_map_shrine_slider_scene = preload("res://scenes/ProgressMap/ShrineSlider.tscn")
+var progress_map_crystal_slider_scene = preload("res://Scenes/ProgressMap/CrystalSlider.tscn")
+var progress_map_shrine_slider_scene = preload("res://Scenes/ProgressMap/ShrineSlider.tscn")
 
 var progress_map_pins_per_roads:Dictionary = {
 	"Gem": progress_map_crystal_slider_scene,

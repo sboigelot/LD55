@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/circle.bench.glb-83168b8632f8117155f8ad3cf6e604c8.scn"
+path="res://.import/circle.bench.glb-9971ea1a72b470843f7da0048dc62505.scn"
 
 [deps]
 
-source_file="res://scenes/Decorations/WakeCup/circle.bench.glb"
-dest_files=[ "res://.import/circle.bench.glb-83168b8632f8117155f8ad3cf6e604c8.scn" ]
+source_file="res://Scenes/Decorations/WakeCup/circle.bench.glb"
+dest_files=[ "res://.import/circle.bench.glb-9971ea1a72b470843f7da0048dc62505.scn" ]
 
 [params]
 

@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/trash.glb-fb86dc310d2f1b758e43aa8482d2060a.scn"
+path="res://.import/trash.glb-6d2792ce65c6fe81199b15ca0d5b497b.scn"
 
 [deps]
 
-source_file="res://scenes/Decorations/WakeCup/trash.glb"
-dest_files=[ "res://.import/trash.glb-fb86dc310d2f1b758e43aa8482d2060a.scn" ]
+source_file="res://Scenes/Decorations/WakeCup/trash.glb"
+dest_files=[ "res://.import/trash.glb-6d2792ce65c6fe81199b15ca0d5b497b.scn" ]
 
 [params]
 

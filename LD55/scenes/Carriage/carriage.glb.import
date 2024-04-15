@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/carriage.glb-b231b81729d10ecae9286f952d7eb2d5.scn"
+path="res://.import/carriage.glb-b03c7ff61c40922f364e8c1551724384.scn"
 
 [deps]
 
-source_file="res://scenes/Carriage/carriage.glb"
-dest_files=[ "res://.import/carriage.glb-b231b81729d10ecae9286f952d7eb2d5.scn" ]
+source_file="res://Scenes/Carriage/carriage.glb"
+dest_files=[ "res://.import/carriage.glb-b03c7ff61c40922f364e8c1551724384.scn" ]
 
 [params]
 

@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/hedge.glb-1a28c63d6b9b685220f5ddb869634367.scn"
+path="res://.import/hedge.glb-b4b780146129927611d1d0763dbdc1a3.scn"
 
 [deps]
 
-source_file="res://scenes/Decorations/WakeCup/hedge.glb"
-dest_files=[ "res://.import/hedge.glb-1a28c63d6b9b685220f5ddb869634367.scn" ]
+source_file="res://Scenes/Decorations/WakeCup/hedge.glb"
+dest_files=[ "res://.import/hedge.glb-b4b780146129927611d1d0763dbdc1a3.scn" ]
 
 [params]
 

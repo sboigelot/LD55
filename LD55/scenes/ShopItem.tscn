@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Fonts/Default/default_16.tres" type="DynamicFont" id=1]
-[ext_resource path="res://scenes/ShopItem.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/ShopItem.gd" type="Script" id=2]
 [ext_resource path="res://Fonts/Default/default_22.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Sprites/UI/plus_button_pressed.svg" type="Texture" id=5]
 [ext_resource path="res://Sprites/UI/plus_button_hover.svg" type="Texture" id=6]

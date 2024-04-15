@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/rock1.glb-5c3ec14390a00d51b49fad78c3e196e3.scn"
+path="res://.import/rock1.glb-e432b92ac008f44c2e649db402b3f640.scn"
 
 [deps]
 
-source_file="res://scenes/Decorations/WakeCup/rock1.glb"
-dest_files=[ "res://.import/rock1.glb-5c3ec14390a00d51b49fad78c3e196e3.scn" ]
+source_file="res://Scenes/Decorations/WakeCup/rock1.glb"
+dest_files=[ "res://.import/rock1.glb-e432b92ac008f44c2e649db402b3f640.scn" ]
 
 [params]
 

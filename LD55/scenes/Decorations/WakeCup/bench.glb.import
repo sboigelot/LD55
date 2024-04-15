@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/bench.glb-3a9db070568fd3cde3676cc2d300e946.scn"
+path="res://.import/bench.glb-acfb339f2beba9f4e000d246d8a9017c.scn"
 
 [deps]
 
-source_file="res://scenes/Decorations/WakeCup/bench.glb"
-dest_files=[ "res://.import/bench.glb-3a9db070568fd3cde3676cc2d300e946.scn" ]
+source_file="res://Scenes/Decorations/WakeCup/bench.glb"
+dest_files=[ "res://.import/bench.glb-acfb339f2beba9f4e000d246d8a9017c.scn" ]
 
 [params]
 

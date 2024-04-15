@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/shrine.glb-c1b5133c5cb41ddbe1920c4696b902e9.scn"
+path="res://.import/shrine.glb-fa08615a749a2491c738714634ef577a.scn"
 
 [deps]
 
-source_file="res://scenes/Shrine/shrine.glb"
-dest_files=[ "res://.import/shrine.glb-c1b5133c5cb41ddbe1920c4696b902e9.scn" ]
+source_file="res://Scenes/Shrine/shrine.glb"
+dest_files=[ "res://.import/shrine.glb-fa08615a749a2491c738714634ef577a.scn" ]
 
 [params]
 

@@ -27,12 +27,12 @@ _global_script_classes=[ {
 "base": "Spatial",
 "class": "AnimatedSummon",
 "language": "GDScript",
-"path": "res://scenes/AnimatedSummon.gd"
+"path": "res://Scenes/AnimatedSummon.gd"
 }, {
 "base": "Spatial",
 "class": "Carriage",
 "language": "GDScript",
-"path": "res://scenes/Carriage/Carriage.gd"
+"path": "res://Scenes/Carriage/Carriage.gd"
 }, {
 "base": "Spatial",
 "class": "ClickableSpatial",
@@ -67,7 +67,7 @@ _global_script_classes=[ {
 "base": "Spatial",
 "class": "Gem",
 "language": "GDScript",
-"path": "res://scenes/Gems/Gem.gd"
+"path": "res://Scenes/Gems/Gem.gd"
 }, {
 "base": "Spatial",
 "class": "HoverLabel3D",
@@ -77,7 +77,7 @@ _global_script_classes=[ {
 "base": "Spatial",
 "class": "Level",
 "language": "GDScript",
-"path": "res://scenes/Level.gd"
+"path": "res://Scenes/Level.gd"
 }, {
 "base": "ImmediateGeometry",
 "class": "Line3D",
@@ -117,12 +117,12 @@ _global_script_classes=[ {
 "base": "MarginContainer",
 "class": "ShopItem",
 "language": "GDScript",
-"path": "res://scenes/ShopItem.gd"
+"path": "res://Scenes/ShopItem.gd"
 }, {
 "base": "Spatial",
 "class": "Shrine",
 "language": "GDScript",
-"path": "res://scenes/Shrine/Shrine.gd"
+"path": "res://Scenes/Shrine/Shrine.gd"
 } ]
 _global_script_class_icons={
 "AccumularorSpatial": "",
@@ -153,7 +153,7 @@ _global_script_class_icons={
 [application]
 
 config/name="LD55"
-run/main_scene="res://scenes/MainMenu.tscn"
+run/main_scene="res://Scenes/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [audio]

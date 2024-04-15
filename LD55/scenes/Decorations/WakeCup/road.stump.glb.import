@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/road.stump.glb-c80c820afbf5dbbd662fdbf2f71cd593.scn"
+path="res://.import/road.stump.glb-dabffdc2cd0a4c6f22a352bc06f0ebac.scn"
 
 [deps]
 
-source_file="res://scenes/Decorations/WakeCup/road.stump.glb"
-dest_files=[ "res://.import/road.stump.glb-c80c820afbf5dbbd662fdbf2f71cd593.scn" ]
+source_file="res://Scenes/Decorations/WakeCup/road.stump.glb"
+dest_files=[ "res://.import/road.stump.glb-dabffdc2cd0a4c6f22a352bc06f0ebac.scn" ]
 
 [params]
 

@@ -5,11 +5,11 @@ export var transition_colors:PoolColorArray
 var level
 
 var road_scenes:Dictionary = {
-	"Base": preload("res://scenes/Roads/RoadBase.tscn"),
-	"Gem1": preload("res://scenes/Roads/RoadGem1.tscn"),
-	"Gem2": preload("res://scenes/Roads/RoadGem2.tscn"),
-	"Shrine1": preload("res://scenes/Roads/RoadShrine1.tscn"),
-	"End": preload("res://scenes/Roads/RoadEnd.tscn"),
+	"Base": preload("res://Scenes/Roads/RoadBase.tscn"),
+	"Gem1": preload("res://Scenes/Roads/RoadGem1.tscn"),
+	"Gem2": preload("res://Scenes/Roads/RoadGem2.tscn"),
+	"Shrine1": preload("res://Scenes/Roads/RoadShrine1.tscn"),
+	"End": preload("res://Scenes/Roads/RoadEnd.tscn"),
 }
 
 func instanciate_road(parent:Spatial, clear_child:bool, road_type:String)->Spatial:
@@ -26,10 +26,10 @@ func instanciate_road(parent:Spatial, clear_child:bool, road_type:String)->Spati
 	return instance
 
 func restart():
-	Game.transition_to_scene("res://scenes/Level.tscn")
+	Game.transition_to_scene("res://Scenes/Level.tscn")
 
 func main_menu():
-	Game.transition_to_scene("res://scenes/MainMenu.tscn")
+	Game.transition_to_scene("res://Scenes/MainMenu.tscn")
 	
 func transition_to_scene(scene_path):
 	var textures = [

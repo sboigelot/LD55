@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/crystal2.glb-0e37e19293f0bb9a3cfebd45609b8f47.scn"
+path="res://.import/crystal2.glb-665e1de6f40346ba16e76f5b367fdf59.scn"
 
 [deps]
 
-source_file="res://scenes/Gems/crystal2.glb"
-dest_files=[ "res://.import/crystal2.glb-0e37e19293f0bb9a3cfebd45609b8f47.scn" ]
+source_file="res://Scenes/Gems/crystal2.glb"
+dest_files=[ "res://.import/crystal2.glb-665e1de6f40346ba16e76f5b367fdf59.scn" ]
 
 [params]
 

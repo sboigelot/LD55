@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/lamp.post.glb-df49c19525b5668fe0be28703f383846.scn"
+path="res://.import/lamp.post.glb-bc77594985005db5c39299668daad4cd.scn"
 
 [deps]
 
-source_file="res://scenes/Decorations/WakeCup/lamp.post.glb"
-dest_files=[ "res://.import/lamp.post.glb-df49c19525b5668fe0be28703f383846.scn" ]
+source_file="res://Scenes/Decorations/WakeCup/lamp.post.glb"
+dest_files=[ "res://.import/lamp.post.glb-bc77594985005db5c39299668daad4cd.scn" ]
 
 [params]
 

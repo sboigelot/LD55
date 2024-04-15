@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/tree2.glb-68090d4dd76021d0d0bee89b3e502463.scn"
+path="res://.import/tree2.glb-da557ce8b79c1d26126345028d23de9e.scn"
 
 [deps]
 
-source_file="res://scenes/Decorations/WakeCup/tree2.glb"
-dest_files=[ "res://.import/tree2.glb-68090d4dd76021d0d0bee89b3e502463.scn" ]
+source_file="res://Scenes/Decorations/WakeCup/tree2.glb"
+dest_files=[ "res://.import/tree2.glb-da557ce8b79c1d26126345028d23de9e.scn" ]
 
 [params]
 

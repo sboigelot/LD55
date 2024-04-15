@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/bushy.glb-e4d1e28b3e4108ddbffb1c1ca73438f8.scn"
+path="res://.import/bushy.glb-3d8ac0fdc5b8ab17e362402cdb465310.scn"
 
 [deps]
 
-source_file="res://scenes/Decorations/WakeCup/bushy.glb"
-dest_files=[ "res://.import/bushy.glb-e4d1e28b3e4108ddbffb1c1ca73438f8.scn" ]
+source_file="res://Scenes/Decorations/WakeCup/bushy.glb"
+dest_files=[ "res://.import/bushy.glb-3d8ac0fdc5b8ab17e362402cdb465310.scn" ]
 
 [params]
 

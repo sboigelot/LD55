@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/statue.glb-bf30257f4672eebf1e19622cc11884d2.scn"
+path="res://.import/statue.glb-85936e4518b93b408a5bfd5e20187036.scn"
 
 [deps]
 
-source_file="res://scenes/Decorations/WakeCup/statue.glb"
-dest_files=[ "res://.import/statue.glb-bf30257f4672eebf1e19622cc11884d2.scn" ]
+source_file="res://Scenes/Decorations/WakeCup/statue.glb"
+dest_files=[ "res://.import/statue.glb-85936e4518b93b408a5bfd5e20187036.scn" ]
 
 [params]
 
