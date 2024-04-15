@@ -56,9 +56,9 @@ onready var ui_carriage_slider = get_node(np_carriage_slider) as HSlider
 onready var ui_distance_rtl = get_node(np_distance_rtl) as RichTextLabel
 
 const road_lenght:float = 30.0
-export(Array, String) var road_layout = [
+var road_layout = [
 	"Gem1",
-	"Gem1",
+	"Gem2",
 	"Shrine1",
 	"Base",
 	"Gem2",
@@ -106,11 +106,13 @@ export(NodePath) var np_message
 export(NodePath) var np_message_title
 export(NodePath) var np_message_rtl
 export(NodePath) var np_message_button
+export(NodePath) var np_message_skip_button
 
 onready var ui_message = get_node(np_message) as Container
 onready var ui_message_title = get_node(np_message_title) as Label
 onready var ui_message_rtl = get_node(np_message_rtl) as RichTextLabel
 onready var ui_message_button = get_node(np_message_button) as Button
+onready var ui_message_skip_button = get_node(np_message_skip_button) as Button
 var ui_message_meta:String
 
 func show_message(title:String, content:String, button_text:String, meta:String):
@@ -121,6 +123,7 @@ func show_message(title:String, content:String, button_text:String, meta:String)
 	ui_message_meta = meta
 	ui_message.visible = true
 	ui_left_panel.modulate = Color(1.0, 1.0, 1.0, 0.5)
+	ui_message_skip_button.visible = "intro" in meta
 	
 func hide_message():
 	game_speed = 1.0
@@ -160,6 +163,10 @@ func _ready():
 	create_progress_map()
 	load_initial_roads()
 	update_ui()
+	
+func _on_MessageSkipButton_pressed():
+	SfxManager.play_from_group(SfxManager.SOUND_GROUP.DING)
+	hide_message()
 	
 func _on_MessageOkButton_pressed():
 	SfxManager.play_from_group(SfxManager.SOUND_GROUP.DING)
@@ -516,4 +523,4 @@ func _on_ShopItemUpRAL_pressed():
 
 func _on_QuitButton_pressed():
 	SfxManager.play_from_group(SfxManager.SOUND_GROUP.BIP)
-	Game.quit()
+	Game.main_menu()

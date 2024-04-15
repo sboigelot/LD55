@@ -1,0 +1,322 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scenes/MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Roads/RoadEnd.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Fonts/Default/default_28.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Fonts/Default/default_16.tres" type="DynamicFont" id=4]
+[ext_resource path="res://scenes/WorldEnvironment.tres" type="Environment" id=5]
+
+[sub_resource type="StyleBoxFlat" id=27]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 7.0
+bg_color = Color( 0.733333, 0.768627, 0.6, 1 )
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id=29]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 7.0
+bg_color = Color( 0.504737, 0.53, 0.4134, 1 )
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id=26]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 7.0
+bg_color = Color( 0.392157, 0.615686, 0.631373, 1 )
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id=28]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 7.0
+bg_color = Color( 0.278431, 0.54902, 0.74902, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.854902, 0.901961, 0.937255, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -594, 268 )
+script = ExtResource( 1 )
+np_ui_audio_master = NodePath("MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/MusicControl/MasterVolumeSlider")
+np_ui_audio_music = NodePath("MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/MusicControl/MusicVolumeSlider")
+np_ui_audio_soundfx = NodePath("MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/MusicControl/SoundFxVolumeSlider")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Background" type="MarginContainer" parent="MarginContainer"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Background"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_vertical = 3
+custom_constants/margin_right = 100
+custom_constants/margin_top = 225
+custom_constants/margin_left = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
+margin_left = 100.0
+margin_top = 225.0
+margin_right = 1820.0
+margin_bottom = 1080.0
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+margin_right = 1720.0
+margin_bottom = 855.0
+size_flags_vertical = 3
+custom_constants/margin_top = 200
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 495.0
+margin_top = 200.0
+margin_right = 1225.0
+margin_bottom = 855.0
+size_flags_horizontal = 6
+custom_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+margin_right = 730.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 730, 0 )
+size_flags_horizontal = 0
+custom_constants/separation = 20
+
+[node name="PlayLevel1Button" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_right = 730.0
+margin_bottom = 110.0
+rect_min_size = Vector2( 730, 110 )
+rect_pivot_offset = Vector2( 41.5, 10 )
+focus_mode = 0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color_focus = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 3 )
+custom_styles/hover = SubResource( 27 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/normal = SubResource( 26 )
+enabled_focus_mode = 0
+text = "Play"
+
+[node name="FullscreenButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 130.0
+margin_right = 730.0
+margin_bottom = 240.0
+rect_min_size = Vector2( 730, 110 )
+rect_pivot_offset = Vector2( 41.5, 10 )
+focus_mode = 0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color_focus = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 3 )
+custom_styles/hover = SubResource( 27 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/normal = SubResource( 26 )
+enabled_focus_mode = 0
+text = "Toggle Fullscreen (F11)"
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 260.0
+margin_right = 730.0
+margin_bottom = 400.0
+custom_constants/margin_top = 30
+
+[node name="MusicControl" type="GridContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3"]
+margin_left = 151.0
+margin_top = 30.0
+margin_right = 579.0
+margin_bottom = 140.0
+size_flags_horizontal = 4
+columns = 2
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/MusicControl"]
+margin_right = 124.0
+margin_bottom = 34.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "Master"
+
+[node name="MasterVolumeSlider" type="HSlider" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/MusicControl"]
+margin_left = 128.0
+margin_top = 9.0
+margin_right = 428.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 300, 0 )
+size_flags_vertical = 4
+
+[node name="Label2" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/MusicControl"]
+margin_top = 38.0
+margin_right = 124.0
+margin_bottom = 72.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "Music"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/MusicControl"]
+margin_left = 128.0
+margin_top = 47.0
+margin_right = 428.0
+margin_bottom = 63.0
+rect_min_size = Vector2( 300, 0 )
+size_flags_vertical = 4
+
+[node name="Label3" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/MusicControl"]
+margin_top = 76.0
+margin_right = 124.0
+margin_bottom = 110.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "Sound FX"
+
+[node name="SoundFxVolumeSlider" type="HSlider" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/MusicControl"]
+margin_left = 128.0
+margin_top = 85.0
+margin_right = 428.0
+margin_bottom = 101.0
+rect_min_size = Vector2( 300, 0 )
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 410.0
+margin_right = 730.0
+margin_bottom = 645.0
+size_flags_vertical = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 655.0
+margin_right = 730.0
+margin_bottom = 655.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 1510.0
+margin_top = 799.0
+margin_right = 1720.0
+margin_bottom = 855.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+custom_constants/margin_right = 60
+custom_constants/margin_bottom = 10
+
+[node name="QuitGameButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer"]
+margin_right = 150.0
+margin_bottom = 46.0
+rect_min_size = Vector2( 150, 0 )
+rect_pivot_offset = Vector2( 41.5, 10 )
+focus_mode = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color_focus = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 3 )
+custom_styles/hover = SubResource( 27 )
+custom_styles/pressed = SubResource( 28 )
+custom_styles/normal = SubResource( 26 )
+enabled_focus_mode = 0
+text = "Quit"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer"]
+margin_left = 585.0
+margin_top = 1045.0
+margin_right = 1335.0
+margin_bottom = 1080.0
+rect_min_size = Vector2( 750, 0 )
+size_flags_horizontal = 4
+size_flags_vertical = 8
+custom_constants/margin_right = 6
+custom_constants/margin_top = 6
+custom_constants/margin_left = 6
+custom_constants/margin_bottom = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/MarginContainer2"]
+margin_left = 6.0
+margin_top = 6.0
+margin_right = 744.0
+margin_bottom = 29.0
+custom_fonts/normal_font = ExtResource( 4 )
+bbcode_enabled = true
+bbcode_text = "[center]Made for Ludum Dare 55 \"Summon\" by [color=#00ffff]Bu[/color] & [color=#00ffff]Togis[/color]"
+text = "Made for Ludum Dare 55 \"Summon\" by Bu & Togis"
+fit_content_height = true
+
+[node name="MainMenuWorld" type="Spatial" parent="."]
+
+[node name="Camera" type="Camera" parent="MainMenuWorld"]
+transform = Transform( 0.819152, -0.32899, 0.469847, 0, 0.819152, 0.573576, -0.573577, -0.469846, 0.67101, 6.46337, 10.8384, 12.6603 )
+environment = ExtResource( 5 )
+projection = 1
+size = 10.0
+
+[node name="DirectionalLight" type="DirectionalLight" parent="MainMenuWorld"]
+transform = Transform( 0.737902, -0.133227, 0.661627, -0.340672, 0.772742, 0.535548, -0.582617, -0.62058, 0.524822, 0, 10.2908, 0 )
+shadow_enabled = true
+shadow_color = Color( 0.223529, 0.223529, 0.223529, 1 )
+
+[node name="RoadBase" parent="MainMenuWorld" instance=ExtResource( 2 )]
+
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/PlayLevel1Button" to="." method="_on_PlayLevel1Button_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/FullscreenButton" to="." method="_on_FullscreenButton_pressed"]
+[connection signal="value_changed" from="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/MusicControl/MasterVolumeSlider" to="." method="_on_MasterVolumeSlider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/MusicControl/MusicVolumeSlider" to="." method="_on_MusicVolumeSlider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/MusicControl/SoundFxVolumeSlider" to="." method="_on_SoundFxVolumeSlider_value_changed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/QuitGameButton" to="." method="_on_QuitGameButton_pressed"]

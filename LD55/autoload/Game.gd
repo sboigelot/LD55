@@ -1,5 +1,7 @@
 extends Node
 
+export var transition_colors:PoolColorArray
+
 var level
 
 var road_scenes:Dictionary = {
@@ -26,16 +28,18 @@ func instanciate_road(parent:Spatial, clear_child:bool, road_type:String)->Spati
 func restart():
 	Game.transition_to_scene("res://scenes/Level.tscn")
 
+func main_menu():
+	Game.transition_to_scene("res://scenes/MainMenu.tscn")
+	
 func transition_to_scene(scene_path):
 	var textures = [
 		load("res://Utilities/SceneTransition/Transitions/transition-texture.png"),
 		load("res://Utilities/SceneTransition/Transitions/middle_strip.png")
 	]
 
-#	var color_index = randi() % transition_colors.size()
+	var color_index = randi() % transition_colors.size()
 	var texture_index = randi() % textures.size()
-#	ScreenTransition.set_transition_color(transition_colors[color_index])
-	ScreenTransition.set_transition_color(Color.black)
+	ScreenTransition.set_transition_color(transition_colors[color_index])
 	ScreenTransition.set_transition_texture(textures[texture_index])
 	ScreenTransition.transition_to_scene(scene_path)
 
