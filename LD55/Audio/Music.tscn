@@ -8,7 +8,6 @@
 [node name="Music" type="Node"]
 script = ExtResource( 1 )
 play_on_start = true
-playing_index = 1
 playlist = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ) ]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

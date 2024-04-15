@@ -4,11 +4,11 @@ class_name Carriage
 
 var mana: float = 10.0
 var mana_max: int = 100
-var mana_max_upgrade_base_cost = 50.0
+var mana_max_upgrade_base_cost = 30.0
 var mana_regen: float = 2.0
-var mana_regen_upgrade_base_cost: float = 25.0
+var mana_regen_upgrade_base_cost: float = 10.0
 var spell_cost: float = 1.0
-var spell_cost_upgrade_base_cost: float = 100.0
+var spell_cost_upgrade_base_cost: float = 75.0
 	
 var distance_travelled: float = 0.0
 var speed: float
@@ -20,7 +20,6 @@ onready var body_animation_player:AnimationPlayer = $Body/AnimationPlayer
 var previously_played_body_animation = ""
 
 onready var front_carrier_visuals:Array = $FrontCarriers.get_children()
-onready var front_carrier_max:int = front_carrier_visuals.size()
 var front_carrier_lifes:Array = []
 var front_carrier_base_cost: int = 10
 var front_carrier_base_speed: float = 0.3
@@ -31,7 +30,6 @@ var front_carrier_lifespan_upgrade_base_cost:int = 25
 var front_carrier_lifespan_multipler: float = 1.0
 
 onready var back_carrier_visuals:Array = $BackCarriers.get_children()
-onready var back_carrier_max:int = back_carrier_visuals.size()
 var back_carrier_lifes:Array = []
 var back_carrier_base_cost: int = 10
 var back_carrier_base_speed: float = 0.3
@@ -42,7 +40,6 @@ var back_carrier_lifespan_upgrade_base_cost:int = 25
 var back_carrier_lifespan_multipler: float = 1.0
 
 onready var left_miner_visuals:Array = $LeftMiners.get_children()
-onready var left_miner_max:int = left_miner_visuals.size()
 var left_miner_lifes:Array = []
 var left_miner_base_cost: int = 10.0
 var left_miner_base_mining_speed: float = 1.0
@@ -52,7 +49,6 @@ var left_miner_upgrade_base_cost: int = 25
 var left_miner_lifespan_multipler: float = 1.0
 
 onready var right_miner_visuals:Array = $RightMiners.get_children()
-onready var right_miner_max:int = right_miner_visuals.size()
 var right_miner_lifes:Array = []
 var right_miner_base_cost: int = 10.0
 var right_miner_base_mining_speed: float = 1.0
@@ -61,6 +57,22 @@ var right_miner_base_lifespan: float = 10.0
 var right_miner_upgrade_base_cost: int = 25
 var right_miner_lifespan_multipler: float = 1.0
 
+func _ready():
+	init_summons_lifes()
+	
+func init_summons_lifes():
+	for i in front_carrier_visuals:
+		front_carrier_lifes.append(-1.0)
+		
+	for i in back_carrier_visuals:
+		back_carrier_lifes.append(-1.0)
+		
+	for i in left_miner_visuals:
+		left_miner_lifes.append(-1.0)
+		
+	for i in right_miner_visuals:
+		right_miner_lifes.append(-1.0)
+	
 func _process(delta):
 	
 	if Game.level.is_paused():
@@ -73,6 +85,57 @@ func _process(delta):
 	calculate_speed()
 	update_body_tilt_and_y()
 
+func increase_summons_life(delta):
+	var life = delta * Game.level.game_speed
+	for i in front_carrier_lifes.size():
+		if front_carrier_lifes[i] >= 0.0:
+			front_carrier_lifes[i] += delta
+		
+	for i in back_carrier_lifes.size():
+		if back_carrier_lifes[i] >= 0.0:
+			back_carrier_lifes[i] += delta
+		
+	for i in left_miner_lifes.size():
+		if left_miner_lifes[i] >= 0.0:
+			left_miner_lifes[i] += delta
+		
+	for i in right_miner_lifes.size():
+		if right_miner_lifes[i] >= 0.0:
+			right_miner_lifes[i] += delta
+		
+func expire_old_summons():
+	_expire_old_summons(front_carrier_lifes, get_front_carrier_lifespan())
+	_expire_old_summons(back_carrier_lifes, get_back_carrier_lifespan())
+	_expire_old_summons(left_miner_lifes, get_left_miner_lifespan())
+	_expire_old_summons(right_miner_lifes, get_right_miner_lifespan())
+	
+func _expire_old_summons(summon_lifes, max_life): 
+	for i in summon_lifes.size():
+		if summon_lifes[i] > max_life:
+			summon_lifes[i] = -1.0
+			
+func update_visual_summons_list(visuals:Array, lifes:Array, parent:Spatial):
+	for i in visuals.size():
+		var visible_last_update = visuals[i].should_be_visible
+		visuals[i].should_be_visible = lifes[i] >= 0
+		
+func update_visual_summons():
+	
+	update_visual_summons_list(front_carrier_visuals,
+								front_carrier_lifes,
+								$FrontCarriers)
+								
+	update_visual_summons_list(back_carrier_visuals,
+								back_carrier_lifes,
+								$BackCarriers)
+								
+	update_visual_summons_list(left_miner_visuals,
+								left_miner_lifes,
+								$LeftMiners)
+								
+	update_visual_summons_list(right_miner_visuals,
+								right_miner_lifes,
+								$RightMiners)
 func regen_mana(delta):
 	mana += mana_regen * delta
 	mana = min(mana, mana_max)
@@ -101,20 +164,6 @@ func update_body_tilt_and_y():
 		return
 	
 	single_play_body_animation("RESET")
-	
-func increase_summons_life(delta):
-	var life = delta * Game.level.game_speed
-	for i in front_carrier_lifes.size():
-		front_carrier_lifes[i] += delta
-		
-	for i in back_carrier_lifes.size():
-		back_carrier_lifes[i] += delta
-		
-	for i in left_miner_lifes.size():
-		left_miner_lifes[i] += delta
-		
-	for i in right_miner_lifes.size():
-		right_miner_lifes[i] += delta
 
 func get_front_carrier_lifespan():
 	return front_carrier_base_lifespan * front_carrier_lifespan_multipler
@@ -128,47 +177,6 @@ func get_left_miner_lifespan():
 func get_right_miner_lifespan():
 	return right_miner_base_lifespan * right_miner_lifespan_multipler
 	
-func expire_old_summons():
-	_expire_old_summons(front_carrier_lifes, get_front_carrier_lifespan())
-	_expire_old_summons(back_carrier_lifes, get_back_carrier_lifespan())
-	_expire_old_summons(left_miner_lifes, get_left_miner_lifespan())
-	_expire_old_summons(right_miner_lifes, get_right_miner_lifespan())
-	
-func _expire_old_summons(summon_lifes, max_life): 
-	var duplicate = summon_lifes.duplicate() 
-	for i in duplicate.size():
-		if duplicate[i] > max_life:
-			summon_lifes.erase(duplicate[i])
-
-func update_visual_summons_list(visuals:Array, lifes:Array, parent:Spatial):
-	var to_move_back = []
-	for i in visuals.size():
-		var visible_last_update = visuals[i].should_be_visible
-		visuals[i].should_be_visible = i < lifes.size()
-		if not visible_last_update and visuals[i].should_be_visible:
-			to_move_back.append(visuals[i])
-	for child in to_move_back:
-		parent.move_child(child, parent.get_child_count() - 1)
-
-func update_visual_summons():
-	
-	update_visual_summons_list(front_carrier_visuals,
-								front_carrier_lifes,
-								$FrontCarriers)
-								
-	update_visual_summons_list(back_carrier_visuals,
-								back_carrier_lifes,
-								$BackCarriers)
-								
-	update_visual_summons_list(left_miner_visuals,
-								left_miner_lifes,
-								$LeftMiners)
-								
-	update_visual_summons_list(right_miner_visuals,
-								right_miner_lifes,
-								$RightMiners)
-	
-	
 func get_front_carrier_speed() -> float:
 	return front_carrier_base_speed * front_carrier_speed_multipler
 	
@@ -176,52 +184,87 @@ func get_back_carrier_speed() -> float:
 	return back_carrier_base_speed * back_carrier_speed_multipler
 	
 func calculate_speed():
-	speed = front_carrier_lifes.size() * get_front_carrier_speed()
-	speed += back_carrier_lifes.size() * get_back_carrier_speed()
+	speed = 0.0
+	
+	front_carried = false
+	var front_carrier_speed = get_front_carrier_speed()
+	for i in front_carrier_lifes.size():
+		if front_carrier_lifes[i] >= 0.0:
+			speed += front_carrier_speed
+			front_carried = true
+	
+	back_carried = false
+	var back_carrier_speed = get_back_carrier_speed()
+	for i in back_carrier_lifes.size():
+		if back_carrier_lifes[i] >= 0.0:
+			speed += back_carrier_speed
+			back_carried = true
 
-	front_carried = front_carrier_lifes.size() != 0
 	if not front_carried:
 		speed /= 2
 		
-	back_carried = back_carrier_lifes.size() != 0
 	if not back_carried:
 		speed /= 2
 
 func can_add_front_carrier() -> bool:
-	return front_carrier_lifes.size() < front_carrier_max
+	for i in front_carrier_lifes.size():
+		if front_carrier_lifes[i] < 0.0:
+			return true
+	return false
 	
 func add_front_carrier() -> bool:
 	if not can_add_front_carrier():
 		return false
-	front_carrier_lifes.append(0.0)
-	return true
-
+	for i in front_carrier_lifes.size():
+		if front_carrier_lifes[i] < 0.0:
+			front_carrier_lifes[i] = 0.0
+			return true
+	return false
+	
 func can_add_back_carrier() -> bool:
-	return back_carrier_lifes.size() < back_carrier_max
+	for i in back_carrier_lifes.size():
+		if back_carrier_lifes[i] < 0.0:
+			return true
+	return false
 	
 func add_back_carrier() -> bool:
 	if not can_add_back_carrier():
 		return false
-	back_carrier_lifes.append(0.0)
-	return true
+	for i in front_carrier_lifes.size():
+		if back_carrier_lifes[i] < 0.0:
+			back_carrier_lifes[i] = 0.0
+			return true
+	return false
 
 func can_add_left_miner() -> bool:
-	return left_miner_lifes.size() < left_miner_max
+	for i in left_miner_lifes.size():
+		if left_miner_lifes[i] < 0.0:
+			return true
+	return false
 	
 func add_left_miner() -> bool:
 	if not can_add_left_miner():
 		return false
-	left_miner_lifes.append(0.0)
-	return true
+	for i in front_carrier_lifes.size():
+		if left_miner_lifes[i] < 0.0:
+			left_miner_lifes[i] = 0.0
+			return true
+	return false
 
 func can_add_right_miner() -> bool:
-	return right_miner_lifes.size() < right_miner_max
+	for i in right_miner_lifes.size():
+		if right_miner_lifes[i] < 0.0:
+			return true
+	return false
 	
 func add_right_miner() -> bool:
 	if not can_add_right_miner():
 		return false
-	right_miner_lifes.append(0.0)
-	return true
+	for i in right_miner_lifes.size():
+		if right_miner_lifes[i] < 0.0:
+			right_miner_lifes[i] = 0.0
+			return true
+	return false
 
 func upgrade_front_carrier_speed():
 	front_carrier_speed_multipler += 0.25
@@ -229,8 +272,19 @@ func upgrade_front_carrier_speed():
 func upgrade_front_carrier_life():
 	front_carrier_lifespan_multipler += 0.25
 
+func count_alive(lifes) -> int:
+	var count = 0
+	for i in lifes.size():
+		if lifes[i] >= 0.0:
+			count += 1
+	return count
+
+func get_front_carrier_count() -> int:
+	return count_alive(front_carrier_lifes)
+
 func get_new_front_carrier_cost() -> int:
-	var cost = front_carrier_base_cost * (1.0 + 0.5 * front_carrier_lifes.size())
+	var count = get_front_carrier_count()
+	var cost = front_carrier_base_cost * (1.0 + 0.5 * count)
 	return int(round(cost * spell_cost))
 	
 func get_front_carrier_speed_upgrade_cost() -> int:
@@ -280,8 +334,12 @@ func get_spell_cost_upgrade_cost() -> int:
 					e * e)
 	return int(round(cost))
 	
+func get_back_carrier_count() -> int:
+	return count_alive(back_carrier_lifes)
+
 func get_new_back_carrier_cost() -> int:
-	var cost = back_carrier_base_cost * (1.0 + 0.5 * back_carrier_lifes.size())
+	var count = get_back_carrier_count()
+	var cost = back_carrier_base_cost * (1.0 + 0.5 * count)
 	return int(round(cost * spell_cost))
 	
 func get_back_carrier_life_upgrade_cost() -> int:
@@ -292,12 +350,20 @@ func get_back_carrier_speed_upgrade_cost() -> int:
 	var cost = back_carrier_speed_upgrade_base_cost * back_carrier_speed_multipler
 	return int(round(cost * spell_cost))
 
+func get_left_miner_count() -> int:
+	return count_alive(left_miner_lifes)
+
 func get_new_left_miner_cost() -> int:
-	var cost = left_miner_base_cost * (1.0 + 0.5 * left_miner_lifes.size())
+	var count = get_left_miner_count()
+	var cost = left_miner_base_cost * (1.0 + 0.5 * count)
 	return int(round(cost * spell_cost))
 	
+func get_right_miner_count() -> int:
+	return count_alive(right_miner_lifes)
+
 func get_new_right_miner_cost() -> int:
-	var cost = right_miner_base_cost * (1.0 + 0.5 * right_miner_lifes.size())
+	var count = get_right_miner_count()
+	var cost = right_miner_base_cost * (1.0 + 0.5 * count)
 	return int(round(cost * spell_cost))
 
 func get_left_miner_life_upgrade_cost() -> int:
@@ -312,13 +378,13 @@ func on_gem_reach_carriage(gem:Gem):
 	var is_gem_left = gem.translation.z > 0
 	
 	if is_gem_left:
-		if left_miner_lifes.size() > 0:
+		if get_left_miner_count() > 0:
 			mine_gem(gem, left_miner_visuals[0].translation)
 			left_miner_visuals[0].working = true
 			return
 		return
 	
-	if right_miner_lifes.size() > 0:
+	if get_right_miner_count() > 0:
 		mine_gem(gem, right_miner_visuals[0].translation)
 		right_miner_visuals[0].working = true
 		return

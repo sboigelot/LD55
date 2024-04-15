@@ -341,7 +341,7 @@ func update_shop_ui():
 	
 	update_shop_item(
 		ui_shop_item_back_carrier,
-		"%d" % [carriage.back_carrier_lifes.size()],
+		"%d" % [carriage.get_back_carrier_count()],
 		carriage.get_new_back_carrier_cost(),
 		carriage.can_add_back_carrier()
 	)
@@ -364,7 +364,7 @@ func update_shop_ui():
 
 	update_shop_item(
 		ui_shop_item_front_carrier,
-		"%d" % [carriage.front_carrier_lifes.size()],
+		"%d" % [carriage.get_front_carrier_count()],
 		carriage.get_new_front_carrier_cost(),
 		carriage.can_add_front_carrier()
 	)
@@ -387,7 +387,7 @@ func update_shop_ui():
 	
 	update_shop_item(
 		ui_shop_item_left_apprentice,
-		"%d" % [carriage.left_miner_lifes.size()],
+		"%d" % [carriage.get_left_miner_count()],
 		carriage.get_new_left_miner_cost(),
 		carriage.can_add_left_miner()
 	)
@@ -402,7 +402,7 @@ func update_shop_ui():
 
 	update_shop_item(
 		ui_shop_item_right_apprentice,
-		"%d" % [carriage.right_miner_lifes.size()],
+		"%d" % [carriage.get_right_miner_count()],
 		carriage.get_new_right_miner_cost(),
 		carriage.can_add_right_miner()
 	)
