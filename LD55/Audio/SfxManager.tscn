@@ -1,0 +1,11 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Audio/SfxManager.gd" type="Script" id=1]
+[ext_resource path="res://Audio/SoundFx/bip1.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Audio/SoundFx/bip0.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Audio/SoundFx/ding.ogg" type="AudioStream" id=4]
+
+[node name="SfxManager" type="Node"]
+script = ExtResource( 1 )
+start_player_count = 5
+sample_collection = [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ) ]

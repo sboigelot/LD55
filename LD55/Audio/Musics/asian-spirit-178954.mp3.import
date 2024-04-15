@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/asian-spirit-178954.mp3-8a94277549ea9618e3b16cd3471a3b66.mp3str"
+
+[deps]
+
+source_file="res://Audio/Musics/asian-spirit-178954.mp3"
+dest_files=[ "res://.import/asian-spirit-178954.mp3-8a94277549ea9618e3b16cd3471a3b66.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

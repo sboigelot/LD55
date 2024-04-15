@@ -22,3 +22,25 @@ func instanciate_road(parent:Spatial, clear_child:bool, road_type:String)->Spati
 	var instance = road_scene.instance()
 	parent.add_child(instance)
 	return instance
+
+func restart():
+	Game.transition_to_scene("res://scenes/Level.tscn")
+
+func transition_to_scene(scene_path):
+	var textures = [
+		load("res://Utilities/SceneTransition/Transitions/transition-texture.png"),
+		load("res://Utilities/SceneTransition/Transitions/middle_strip.png")
+	]
+
+#	var color_index = randi() % transition_colors.size()
+	var texture_index = randi() % textures.size()
+#	ScreenTransition.set_transition_color(transition_colors[color_index])
+	ScreenTransition.set_transition_color(Color.black)
+	ScreenTransition.set_transition_texture(textures[texture_index])
+	ScreenTransition.transition_to_scene(scene_path)
+
+func quit():
+	if OS.has_feature("HTML5"):
+		OS.window_fullscreen = false
+	else:
+		get_tree().quit()

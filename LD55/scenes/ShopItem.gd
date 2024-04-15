@@ -49,6 +49,8 @@ func update_button():
 		button.text = ("%s (%d)" % [action_text, mana_cost]) if not disabled else "MAX"
 
 func _on_BuyButton_pressed():
+	if Game.level.is_paused():
+		return
 	emit_signal("pressed")
 	
 func _process(delta):

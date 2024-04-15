@@ -55,6 +55,7 @@ func _on_Area_input_event(camera, event, position, normal, shape_idx):
 func _on_Shrine_pressed():
 	if used:
 		return
+	SfxManager.play_from_group(SfxManager.SOUND_GROUP.DING)
 	used = true
 	outline_mesh_instance.visible = false
 	

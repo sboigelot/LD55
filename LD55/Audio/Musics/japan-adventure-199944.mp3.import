@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/japan-adventure-199944.mp3-f005ba105305fbcd0e03aa429d1e0612.mp3str"
+
+[deps]
+
+source_file="res://Audio/Musics/japan-adventure-199944.mp3"
+dest_files=[ "res://.import/japan-adventure-199944.mp3-f005ba105305fbcd0e03aa429d1e0612.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

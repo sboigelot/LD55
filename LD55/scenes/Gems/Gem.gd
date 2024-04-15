@@ -18,8 +18,6 @@ onready var outline_mesh_instance:Spatial = get_node(np_mesh_outline_spatial) as
 
 onready var tutorial_hover_label_3d:HoverLabel3D = $HoverLabel3D
 
-signal carriage_reached
-
 var passed_carriage: bool = false
 
 func _ready():
@@ -28,7 +26,7 @@ func _ready():
 	update_tutorial()
 
 func _process(delta):
-	if not passed_carriage and global_translation.x <= 1.0:
+	if not passed_carriage and global_translation.x <= 2.0:
 		passed_carriage = true
 		Game.level.carriage.on_gem_reach_carriage(self)
 

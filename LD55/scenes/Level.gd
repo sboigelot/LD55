@@ -58,6 +58,7 @@ onready var ui_distance_rtl = get_node(np_distance_rtl) as RichTextLabel
 const road_lenght:float = 30.0
 export(Array, String) var road_layout = [
 	"Gem1",
+	"Gem1",
 	"Shrine1",
 	"Base",
 	"Gem2",
@@ -67,12 +68,12 @@ export(Array, String) var road_layout = [
 	"Base", 
 	"Base",
 	"Gem1",
-	"Gem1",
+	"Shrine1",
 	"Gem1",
 	"Base",
 	"Base",
 	"Gem1",
-	"Gem1", 
+	"Gem2", 
 	"Base", 
 	"Base",
 	"Gem1",
@@ -81,11 +82,50 @@ export(Array, String) var road_layout = [
 ]
 onready var total_distance:float = ((road_layout.size() - 2) * road_lenght)
 
+export(NodePath) var np_progress_map
+onready var progress_map = get_node(np_progress_map) as Container
+var progress_map_crystal_slider_scene = preload("res://scenes/ProgressMap/CrystalSlider.tscn")
+var progress_map_shrine_slider_scene = preload("res://scenes/ProgressMap/ShrineSlider.tscn")
+
+var progress_map_pins_per_roads:Dictionary = {
+	"Gem": progress_map_crystal_slider_scene,
+	"Shrine": progress_map_shrine_slider_scene
+}
+
 var game_speed: float =  1.0
 export var time_left: float = 5.0 * 60.0
 
-onready var debug_rtb = $LeftPanelMargin/LeftPanel/VBoxContainer/DebugRichTextLabel
+export(NodePath) var np_debug_rtl
+onready var debug_rtl = get_node(np_debug_rtl) as RichTextLabel
 onready var carriage:Carriage = $Carriage
+
+export(NodePath) var np_left_panel
+onready var ui_left_panel = get_node(np_left_panel) as Container
+
+export(NodePath) var np_message
+export(NodePath) var np_message_title
+export(NodePath) var np_message_rtl
+export(NodePath) var np_message_button
+
+onready var ui_message = get_node(np_message) as Container
+onready var ui_message_title = get_node(np_message_title) as Label
+onready var ui_message_rtl = get_node(np_message_rtl) as RichTextLabel
+onready var ui_message_button = get_node(np_message_button) as Button
+var ui_message_meta:String
+
+func show_message(title:String, content:String, button_text:String, meta:String):
+	game_speed = 0.0
+	ui_message_title.text = title
+	ui_message_rtl.bbcode_text = content
+	ui_message_button.text = button_text
+	ui_message_meta = meta
+	ui_message.visible = true
+	ui_left_panel.modulate = Color(1.0, 1.0, 1.0, 0.5)
+	
+func hide_message():
+	game_speed = 1.0
+	ui_message.visible = false
+	ui_left_panel.modulate = Color.white
 
 var tutorial_step_gem_click = 0
 var tutorial_shrine_gem_click = 0
@@ -102,8 +142,62 @@ func _ready():
 	if Game.level != null and is_instance_valid(Game.level):
 		Game.level.queue_free()
 	Game.level = self
+	
+	ui_message.visible = false
+	
+	show_message(
+		"A summon from the Emperor", 
+		(
+			"[center]"+
+				"The Emperor appointed you to carry the tax from your village to his castle!\n\n" +
+				"Unfortunatly you are a weak wizard!\n\n" +
+				"You need to summon magical carriers to help you." +
+			"[/center]"
+		),
+		"Alacazam",
+		"intro1")
+		
+	create_progress_map()
 	load_initial_roads()
 	update_ui()
+	
+func _on_MessageOkButton_pressed():
+	SfxManager.play_from_group(SfxManager.SOUND_GROUP.DING)
+	hide_message()
+	
+	match(ui_message_meta):
+		"intro1":
+			show_message(
+				"A summon from the Emperor", 
+				(
+					"[center]"+
+						"Summoning cost Mana!\n\n" +
+						"Gain more mana by summoning Apprentice to collect crystal on your journey\n\n" +
+						"That's it, no more tutorial, good luck!" +
+					"[/center]"
+				),
+				"Abracadabra",
+				"intro2")
+				
+		"victory":
+			Game.restart()
+			
+		"defeat":
+			Game.restart()
+	
+func create_progress_map():
+	for i in road_layout.size():
+		var scene = null
+		for road_start in progress_map_pins_per_roads.keys():
+			if road_start in road_layout[i]:
+				scene = progress_map_pins_per_roads[road_start]
+		if scene == null:
+			continue
+			
+		var instance = scene.instance() as HSlider
+		instance.max_value = total_distance
+		instance.value = i * road_lenght - (road_lenght/2)
+		progress_map.add_child(instance)
 
 func load_initial_roads():
 	var roads = $Roads.get_children()
@@ -128,6 +222,16 @@ func _process(delta):
 	ui_carriage_slider.max_value = total_distance
 	ui_carriage_slider.value = carriage.distance_travelled
 	
+func _input(event):
+	if Input.is_action_just_released("ui_cancel"):
+		if not ui_message.visible:
+			show_message("Pause","[center]Take a break and breath[/center].", "Resume", "pause")
+		else:
+			_on_MessageOkButton_pressed()
+			
+	if Input.is_action_just_released("fullscreen"):
+		OS.window_fullscreen = !OS.window_fullscreen
+			
 func move_roads(delta):
 	var travel = carriage.speed * game_speed * delta
 	carriage.distance_travelled += travel
@@ -152,13 +256,36 @@ func generate_mana(mana_generated):
 	carriage.mana += mana_generated
 
 func victory():
-	pass
+	show_message(
+		"Victory", 
+		(
+			"[center]"+
+			"The Emperor is pleased!\n\n"+
+			"You delivered the tax to the Emperor with %d minutes and %d seconds left!\n\n" % [
+				int(time_left) / 60,
+				int(time_left) % 60
+			]+
+			"Can you do better?" +
+			"[/center]"
+		),
+		"Retry",
+		"victory")
 	
 func defeat():
-	pass
+	show_message(
+		"Defeat", 
+		(
+			"[center]"+
+				"You didn't suceed this time...\n\n" +
+				"You ran out of time and the Emperor sent you to work as a toilet scrubber for the rest of your life!\n\n" +
+				"Can you do better?" +
+			"[/center]"
+		),
+		"Retry",
+		"defeat")
 
 func update_ui():
-	debug_rtb.bbcode_text = ("[center][b]Time Left:[/b] %02d:%02d[/center]") % [
+	debug_rtl.bbcode_text = ("[center][b]Time Left:[/b] %02d:%02d[/center]") % [
 			int(time_left) / 60,
 			int(time_left) % 60
 		]
@@ -303,72 +430,90 @@ func spawn_floating_label(position2d:Vector2, text:String, icon_path:String = ""
 	instance.rect_position = position2d - Vector2(0, -10)
 
 func _on_ManaRegenShopItem_pressed():
+	SfxManager.play_from_group(SfxManager.SOUND_GROUP.BIP)
 	var cost = carriage.get_mana_regen_upgrade_cost()
 	carriage.upgrade_mana_regen()
 	carriage.mana -= cost
 
 
 func _on_ManaMaxShopItem2_pressed():
+	SfxManager.play_from_group(SfxManager.SOUND_GROUP.BIP)
 	var cost = carriage.get_mana_max_upgrade_cost()
 	carriage.upgrade_mana_max()
 	carriage.mana -= cost
 
 
 func _on_SpellCostShopItem3_pressed():
+	SfxManager.play_from_group(SfxManager.SOUND_GROUP.BIP)
 	var cost = carriage.get_spell_cost_upgrade_cost()
 	carriage.upgrade_spell_cost()
 	carriage.mana -= cost
 
 func _on_ShopItemNewBC_pressed():
+	SfxManager.play_from_group(SfxManager.SOUND_GROUP.BIP)
 	var cost = carriage.get_new_back_carrier_cost()
 	if carriage.add_back_carrier():
 		carriage.mana -= cost
 		back_carrier_upgrade_locked = false
 
 func _on_ShopItemUpBCL_pressed():
+	SfxManager.play_from_group(SfxManager.SOUND_GROUP.BIP)
 	var cost = carriage.get_back_carrier_life_upgrade_cost()
 	carriage.upgrade_back_carrier_life()
 	carriage.mana -= cost
 
 func _on_ShopItemUpBCS_pressed():
+	SfxManager.play_from_group(SfxManager.SOUND_GROUP.BIP)
 	var cost = carriage.get_back_carrier_speed_upgrade_cost()
 	carriage.upgrade_back_carrier_speed()
 	carriage.mana -= cost
 
 func _on_ShopItemNewFC_pressed():
+	SfxManager.play_from_group(SfxManager.SOUND_GROUP.BIP)
 	var cost = carriage.get_new_front_carrier_cost()
 	if carriage.add_front_carrier():
 		carriage.mana -= cost
 		front_carrier_upgrade_locked = false
 
 func _on_ShopItemUpFCL_pressed():
+	SfxManager.play_from_group(SfxManager.SOUND_GROUP.BIP)
 	var cost = carriage.get_front_carrier_life_upgrade_cost()
 	carriage.upgrade_front_carrier_life()
 	carriage.mana -= cost
 
 func _on_ShopItemUpFCS_pressed():
+	SfxManager.play_from_group(SfxManager.SOUND_GROUP.BIP)
 	var cost = carriage.get_front_carrier_speed_upgrade_cost()
 	carriage.upgrade_front_carrier_speed()
 	carriage.mana -= cost
 
 func _on_ShopItemNewLA_pressed():
+	SfxManager.play_from_group(SfxManager.SOUND_GROUP.BIP)
 	var cost = carriage.get_new_left_miner_cost()
 	if carriage.add_left_miner():
 		carriage.mana -= cost
 		left_apprentice_upgrade_locked = false
 
 func _on_ShopItemUpLAL_pressed():
+	SfxManager.play_from_group(SfxManager.SOUND_GROUP.BIP)
 	var cost = carriage.get_left_miner_life_upgrade_cost()
 	carriage.upgrade_left_miner_life()
 	carriage.mana -= cost
 
 func _on_ShopItemNewRA_pressed():
+	SfxManager.play_from_group(SfxManager.SOUND_GROUP.BIP)
 	var cost = carriage.get_new_right_miner_cost()
 	if carriage.add_right_miner():
 		carriage.mana -= cost
 		right_apprentice_upgrade_locked = false
 
 func _on_ShopItemUpRAL_pressed():
+	SfxManager.play_from_group(SfxManager.SOUND_GROUP.BIP)
 	var cost = carriage.get_right_miner_life_upgrade_cost()
 	carriage.upgrade_right_miner_life()
 	carriage.mana -= cost
+
+
+func _on_QuitButton_pressed():
+	SfxManager.play_from_group(SfxManager.SOUND_GROUP.BIP)
+	Game.quit()

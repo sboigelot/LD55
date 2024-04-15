@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ding.ogg-2729f5c1825ba107d135d882474a0c4a.oggstr"
+
+[deps]
+
+source_file="res://Audio/SoundFx/ding.ogg"
+dest_files=[ "res://.import/ding.ogg-2729f5c1825ba107d135d882474a0c4a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -139,33 +139,36 @@ func _expire_old_summons(summon_lifes, max_life):
 	for i in duplicate.size():
 		if duplicate[i] > max_life:
 			summon_lifes.erase(duplicate[i])
-	
+
+func update_visual_summons_list(visuals:Array, lifes:Array, parent:Spatial):
+	var to_move_back = []
+	for i in visuals.size():
+		var visible_last_update = visuals[i].should_be_visible
+		visuals[i].should_be_visible = i < lifes.size()
+		if not visible_last_update and visuals[i].should_be_visible:
+			to_move_back.append(visuals[i])
+	for child in to_move_back:
+		parent.move_child(child, parent.get_child_count() - 1)
+
 func update_visual_summons():
-	for i in front_carrier_visuals.size():
-		if front_carrier_visuals[i] is AnimatedSummon:
-			front_carrier_visuals[i].should_be_visible = i < front_carrier_lifes.size()
-		else:
-			front_carrier_visuals[i].visible = i < front_carrier_lifes.size()
-		
-	for i in back_carrier_visuals.size():
-		if back_carrier_visuals[i] is AnimatedSummon:
-			back_carrier_visuals[i].should_be_visible = i < back_carrier_lifes.size()
-		else:
-			back_carrier_visuals[i].visible = i < back_carrier_lifes.size()
-		
-	for i in left_miner_visuals.size():
-		if left_miner_visuals[i] is AnimatedSummon:
-			left_miner_visuals[i].should_be_visible = i < left_miner_lifes.size()
-		else:
-			left_miner_visuals[i].visible = i < left_miner_lifes.size()
-		
-	for i in right_miner_visuals.size():
-		if right_miner_visuals[i] is AnimatedSummon:
-			right_miner_visuals[i].should_be_visible = i < right_miner_lifes.size()
-		else:
-			right_miner_visuals[i].visible = i < right_miner_lifes.size()
-		
-		
+	
+	update_visual_summons_list(front_carrier_visuals,
+								front_carrier_lifes,
+								$FrontCarriers)
+								
+	update_visual_summons_list(back_carrier_visuals,
+								back_carrier_lifes,
+								$BackCarriers)
+								
+	update_visual_summons_list(left_miner_visuals,
+								left_miner_lifes,
+								$LeftMiners)
+								
+	update_visual_summons_list(right_miner_visuals,
+								right_miner_lifes,
+								$RightMiners)
+	
+	
 func get_front_carrier_speed() -> float:
 	return front_carrier_base_speed * front_carrier_speed_multipler
 	
@@ -311,14 +314,17 @@ func on_gem_reach_carriage(gem:Gem):
 	if is_gem_left:
 		if left_miner_lifes.size() > 0:
 			mine_gem(gem, left_miner_visuals[0].translation)
+			left_miner_visuals[0].working = true
 			return
 		return
 	
 	if right_miner_lifes.size() > 0:
 		mine_gem(gem, right_miner_visuals[0].translation)
+		right_miner_visuals[0].working = true
 		return
 
 func mine_gem(gem:Gem, position3d:Vector3):
+	SfxManager.play_from_group(SfxManager.SOUND_GROUP.DING)
 	var mana_generated = gem.mana_stored - gem.mana_mined
 	gem.queue_free()
 	Game.level.generate_mana(mana_generated)

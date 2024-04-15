@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sakura-dance-background-music-traditional-japanese-165338.mp3-d9f6ceaa2b4768df3993db811b7481ee.mp3str"
+
+[deps]
+
+source_file="res://Audio/Musics/sakura-dance-background-music-traditional-japanese-165338.mp3"
+dest_files=[ "res://.import/sakura-dance-background-music-traditional-japanese-165338.mp3-d9f6ceaa2b4768df3993db811b7481ee.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

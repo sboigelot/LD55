@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Audio/Music.gd" type="Script" id=1]
+[ext_resource path="res://Audio/Musics/sakura-dance-background-music-traditional-japanese-165338.mp3" type="AudioStream" id=2]
+[ext_resource path="res://Audio/Musics/asian-spirit-178954.mp3" type="AudioStream" id=3]
+[ext_resource path="res://Audio/Musics/japan-adventure-199944.mp3" type="AudioStream" id=4]
+
+[node name="Music" type="Node"]
+script = ExtResource( 1 )
+play_on_start = true
+playing_index = 1
+playlist = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ) ]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+autoplay = true

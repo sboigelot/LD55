@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bip0.ogg-023d032c67e64919b16f85e8cfedbeaf.oggstr"
+
+[deps]
+
+source_file="res://Audio/SoundFx/bip0.ogg"
+dest_files=[ "res://.import/bip0.ogg-023d032c67e64919b16f85e8cfedbeaf.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
