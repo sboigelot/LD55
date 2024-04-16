@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/carriage.glb-b03c7ff61c40922f364e8c1551724384.scn"
+path="res://.import/carriage.obj-8cbb302fac4bfe1889f60e717f7a468b.scn"
 
 [deps]
 
-source_file="res://Scenes/Carriage/carriage.glb"
-dest_files=[ "res://.import/carriage.glb-b03c7ff61c40922f364e8c1551724384.scn" ]
+source_file="res://Scenes/Carriage/carriage.obj"
+dest_files=[ "res://.import/carriage.obj-8cbb302fac4bfe1889f60e717f7a468b.scn" ]
 
 [params]
 
@@ -16,7 +16,7 @@ nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""
 nodes/storage=0
-nodes/use_legacy_names=false
+nodes/use_legacy_names=true
 materials/location=1
 materials/storage=1
 materials/keep_on_reimport=true

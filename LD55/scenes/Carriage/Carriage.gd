@@ -63,15 +63,19 @@ func _ready():
 func init_summons_lifes():
 	for i in front_carrier_visuals:
 		front_carrier_lifes.append(-1.0)
+		i.visible = false
 		
 	for i in back_carrier_visuals:
 		back_carrier_lifes.append(-1.0)
+		i.visible = false
 		
 	for i in left_miner_visuals:
 		left_miner_lifes.append(-1.0)
+		i.visible = false
 		
 	for i in right_miner_visuals:
 		right_miner_lifes.append(-1.0)
+		i.visible = false
 	
 func _process(delta):
 	

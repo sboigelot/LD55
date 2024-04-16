@@ -177,7 +177,11 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/color-palette/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/blender_importer/plugin.cfg", "res://addons/color-palette/plugin.cfg" )
+
+[filesystem]
+
+import/filters/sharpen_intensity=0.0
 
 [gui]
 

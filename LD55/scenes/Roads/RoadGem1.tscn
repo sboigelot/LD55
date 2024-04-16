@@ -84,3 +84,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4485, 0.951871, -8.3219 )
 
 [node name="tree2" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.97572, 0.95187, -7.19394 )
+
+[editable path="tree4"]

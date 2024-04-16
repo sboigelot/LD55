@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Scenes/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Roads/RoadEnd.tscn" type="PackedScene" id=2]
@@ -6,11 +6,15 @@
 [ext_resource path="res://Fonts/Default/default_16.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Scenes/WorldEnvironment.tres" type="Environment" id=5]
 [ext_resource path="res://Sprites/UI/play_button_pressed.svg" type="Texture" id=6]
+[ext_resource path="res://Fonts/Default/default_64.tres" type="DynamicFont" id=7]
 [ext_resource path="res://Sprites/UI/play_button_normal.svg" type="Texture" id=8]
 [ext_resource path="res://Sprites/UI/play_button_hover.svg" type="Texture" id=9]
 [ext_resource path="res://Sprites/UI/fullscreen_button_pressed.svg" type="Texture" id=10]
 [ext_resource path="res://Sprites/UI/fullscreen_button_hover.svg" type="Texture" id=11]
 [ext_resource path="res://Sprites/UI/fullscreen_button_normal.svg" type="Texture" id=12]
+[ext_resource path="res://Scenes/Carriers/carrier.glb" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/Apprenices/miner.glb" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Gems/crystal.glb" type="PackedScene" id=16]
 
 [sub_resource type="StyleBoxTexture" id=37]
 texture = ExtResource( 9 )
@@ -63,6 +67,29 @@ content_margin_left = 5.0
 content_margin_right = 5.0
 content_margin_top = 5.0
 content_margin_bottom = 7.0
+bg_color = Color( 0.780392, 0.482353, 0.345098, 1 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id=43]
+content_margin_left = 30.0
+content_margin_right = 30.0
+content_margin_top = 15.0
+content_margin_bottom = 15.0
+bg_color = Color( 0.682353, 0.364706, 0.25098, 1 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+expand_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxFlat" id=42]
+content_margin_left = 30.0
+content_margin_right = 30.0
+content_margin_top = 15.0
+content_margin_bottom = 15.0
 bg_color = Color( 0.780392, 0.482353, 0.345098, 1 )
 corner_radius_top_left = 50
 corner_radius_top_right = 50
@@ -298,6 +325,43 @@ bbcode_text = "[center]Made for Ludum Dare 55 \"Summon\" by [color=#00ffff]Bu[/c
 text = "Made for Ludum Dare 55 \"Summon\" by Bu & Togis"
 fit_content_height = true
 
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer"]
+margin_right = 1920.0
+margin_bottom = 154.0
+size_flags_vertical = 0
+custom_constants/margin_top = 50
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer3"]
+margin_left = 716.0
+margin_top = 50.0
+margin_right = 1204.0
+margin_bottom = 154.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/MarginContainer3/MarginContainer"]
+margin_right = 488.0
+margin_bottom = 104.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 43 )
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/MarginContainer3/MarginContainer"]
+margin_right = 488.0
+margin_bottom = 104.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+custom_styles/panel = SubResource( 42 )
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer3/MarginContainer/PanelContainer"]
+margin_left = 30.0
+margin_top = 15.0
+margin_right = 458.0
+margin_bottom = 89.0
+custom_colors/font_color = Color( 0.823529, 0.788235, 0.647059, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "Emperor's Gem"
+
 [node name="MainMenuWorld" type="Spatial" parent="."]
 
 [node name="Camera" type="Camera" parent="MainMenuWorld"]
@@ -312,6 +376,15 @@ shadow_enabled = true
 shadow_color = Color( 0.223529, 0.223529, 0.223529, 1 )
 
 [node name="RoadBase" parent="MainMenuWorld" instance=ExtResource( 2 )]
+
+[node name="miner" parent="MainMenuWorld" instance=ExtResource( 14 )]
+transform = Transform( 0.910272, 0, -0.41401, 0, 1, 0, 0.41401, 0, 0.910272, 2.3034, 2.38419e-07, -1.47698 )
+
+[node name="carrier" parent="MainMenuWorld" instance=ExtResource( 13 )]
+transform = Transform( 0, 0, -1, 0, 1, 0, 1, 0, 0, 4, 0, -2 )
+
+[node name="crystal3" parent="MainMenuWorld" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.58611, 0, -1.14082 )
 
 [connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/PlayLevel1Button" to="." method="_on_PlayLevel1Button_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/FullscreenButton" to="." method="_on_FullscreenButton_pressed"]

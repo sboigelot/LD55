@@ -153,7 +153,7 @@ func _ready():
 		(
 			"[center]"+
 				"The Emperor appointed you to carry the tax from your village to his castle!\n\n" +
-				"Unfortunatly you are a weak wizard!\n\n" +
+				"Unfortunately you are a weak wizard!\n\n" +
 				"You need to summon magical carriers to help you." +
 			"[/center]"
 		),
@@ -203,7 +203,7 @@ func create_progress_map():
 			
 		var instance = scene.instance() as HSlider
 		instance.max_value = total_distance
-		instance.value = i * road_lenght - (road_lenght/2)
+		instance.value = i * road_lenght# - (road_lenght/2)
 		progress_map.add_child(instance)
 
 func load_initial_roads():
@@ -334,7 +334,7 @@ func update_shop_ui():
 
 	update_shop_item(
 		ui_shop_item_spell_cost,
-		"%.2f" % [carriage.spell_cost],
+		"%d%%" % [round(carriage.spell_cost * 100)],
 		carriage.get_spell_cost_upgrade_cost(),
 		true
 	)

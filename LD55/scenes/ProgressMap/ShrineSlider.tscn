@@ -10,6 +10,7 @@ margin_top = 20.0
 margin_right = 1221.0
 margin_bottom = 36.0
 size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_icons/grabber_disabled = ExtResource( 1 )
 custom_styles/slider = SubResource( 7 )
 value = 66.0

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scenes/Carriage/Carriage.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Apprenices/Apprentice.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Carriage/carriage.glb" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Carriage/carriage.obj" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Carriers/Carrier.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=6]
@@ -123,7 +123,6 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17, 0 )
 
 [node name="carriage" parent="Body" instance=ExtResource( 3 )]
-transform = Transform( 1, -4.47035e-08, 0, 4.47035e-08, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Body"]
 autoplay = "TiltFront"
