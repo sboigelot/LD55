@@ -154,7 +154,7 @@ func _ready():
 			"[center]"+
 				"The Emperor appointed you to carry the tax from your village to his castle!\n\n" +
 				"Unfortunately you are a weak wizard!\n\n" +
-				"You need to summon magical carriers to help you." +
+				"You need to summon magical carriers to help you move your carriage." +
 			"[/center]"
 		),
 		"Alacazam!",
@@ -179,7 +179,7 @@ func _on_MessageOkButton_pressed():
 				(
 					"[center]"+
 						"Summoning cost Mana!\n\n" +
-						"Gain more mana by summoning Apprentice to collect crystal on your journey\n\n" +
+						"Get more mana by summoning Apprentices who collect mana crystals on the road\n\n" +
 						"That's it, no more tutorial, good luck!" +
 					"[/center]"
 				),
