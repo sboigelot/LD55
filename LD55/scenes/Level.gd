@@ -320,7 +320,7 @@ func update_shop_ui():
 	
 	update_shop_item(
 		ui_shop_item_mana_regen,
-		"%+.2f /sec" % [carriage.mana_regen],
+		"%+d /sec" % [carriage.mana_regen],
 		carriage.get_mana_regen_upgrade_cost(),
 		true
 	)
@@ -348,7 +348,7 @@ func update_shop_ui():
 	
 	update_shop_item(
 		ui_shop_item_back_carrier_lifespan,
-		"%.2f sec" % [carriage.get_back_carrier_lifespan()],
+		"%d sec" % [carriage.get_back_carrier_lifespan()],
 		carriage.get_back_carrier_life_upgrade_cost(),
 		true,
 		not back_carrier_upgrade_locked
@@ -371,7 +371,7 @@ func update_shop_ui():
 	
 	update_shop_item(
 		ui_shop_item_front_carrier_lifespan,
-		"%.2f sec" % [carriage.get_front_carrier_lifespan()],
+		"%d sec" % [carriage.get_front_carrier_lifespan()],
 		carriage.get_front_carrier_life_upgrade_cost(),
 		true,
 		not front_carrier_upgrade_locked
@@ -394,7 +394,7 @@ func update_shop_ui():
 	
 	update_shop_item(
 		ui_shop_item_left_apprentice_lifespan,
-		"%.2f sec" % [carriage.get_left_miner_lifespan()],
+		"%d sec" % [carriage.get_left_miner_lifespan()],
 		carriage.get_left_miner_life_upgrade_cost(),
 		true,
 		not left_apprentice_upgrade_locked
@@ -409,7 +409,7 @@ func update_shop_ui():
 		
 	update_shop_item(
 		ui_shop_item_right_apprentice_lifespan,
-		"%.2f sec" % [carriage.get_right_miner_lifespan()],
+		"%d sec" % [carriage.get_right_miner_lifespan()],
 		carriage.get_right_miner_life_upgrade_cost(),
 		true,
 		not right_apprentice_upgrade_locked
@@ -429,7 +429,7 @@ func spawn_floating_label(position2d:Vector2, text:String, icon_path:String = ""
 #	instance.lifetime = 0.6
 #	instance.font = Game.floatng_label_font
 #	instance.direction = Vector2(+.5, -0.5)
-	instance.modulate = Color.black
+	instance.modulate = Color(75.0, 61.0, 68.0)
 #	instance.icon_path = icon_path #TODO
 	instance.text = text
 	instance.font = floatng_label_font
