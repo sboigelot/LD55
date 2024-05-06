@@ -48,7 +48,7 @@ transform = Transform( 0.422601, 0, 0, 0, 0.422601, 0, 0, 0, 0.422601, -3.87078,
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.24876, 0.455646, -6.53029 )
 
 [node name="rock2" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1.28969, 0, -0.921965, 0, 1, 0, 0.921965, 0, 1.28969, -8.37435, 0.617226, -6.24599 )
+transform = Transform( 1.12953, 0, -1.11243, 0, 1, 0, 1.11243, 0, 1.12953, -8.37435, 0.617226, -6.60276 )
 
 [node name="tree1" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.81785, 1.11272, -6.69673 )
